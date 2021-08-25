@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.0...v1.0.1) (2021-08-25)
+
+
+### Bug Fixes
+
+* also publish release to major branch ([9acacef](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/9acacef7cdc6dad5fd1b2c1e029fb39ef143336f))
+
 # 1.0.0 (2021-08-20)
 
 
