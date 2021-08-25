@@ -24,7 +24,7 @@ Creates an Amazon App Mesh Virtual Node
 
 ```yaml
 - name: App Mesh Virtual Node
-  uses: scribd/amazon-appmesh-virtual-node@master
+  uses: scribd/amazon-appmesh-virtual-node-action@v1
   with:
     name: my-virtual-node
     mesh-name: my-mesh-name
@@ -62,7 +62,7 @@ Deleting the resource requires `name`, `mesh-name`, and `action` to be specified
 
 ```yaml
 - name: App Mesh Virtual Node
-  uses: scribd/amazon-appmesh-virtual-node@master
+  uses: scribd/amazon-appmesh-virtual-node-action@v1
   with:
     name: my-virtual-node
     mesh-name: my-mesh-name
