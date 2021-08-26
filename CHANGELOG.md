@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.2...v1.0.3) (2021-08-26)
+
+
+### Bug Fixes
+
+* **deps:** bump @aws-sdk/util-waiter from 3.23.0 to 3.25.0 ([a3dfe00](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/a3dfe00a3e86ef00a9b53c62420dc7b61fac7c30))
+
 ## [1.0.2](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.1...v1.0.2) (2021-08-26)
 
 
