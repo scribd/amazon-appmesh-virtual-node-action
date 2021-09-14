@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.8...v1.0.9) (2021-09-14)
+
+
+### Bug Fixes
+
+* **deps:** bump @aws-sdk/client-app-mesh from 3.30.0 to 3.31.0 ([cee0421](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/cee0421e692d3e871ef445bdeafa837d9653f860))
+
 ## [1.0.8](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.7...v1.0.8) (2021-09-10)
 
 
