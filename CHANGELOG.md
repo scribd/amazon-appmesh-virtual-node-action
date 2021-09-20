@@ -1,3 +1,10 @@
+## [1.0.12](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.11...v1.0.12) (2021-09-20)
+
+
+### Bug Fixes
+
+* **deps:** bump tmpl from 1.0.4 to 1.0.5 ([683c74b](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/683c74be96af67f4680e4038801145efe9f077fa))
+
 ## [1.0.11](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.10...v1.0.11) (2021-09-20)
 
 
