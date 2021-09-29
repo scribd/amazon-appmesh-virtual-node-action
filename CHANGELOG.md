@@ -1,3 +1,10 @@
+## [1.0.16](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.15...v1.0.16) (2021-09-29)
+
+
+### Bug Fixes
+
+* **deps:** bump @actions/core from 1.5.0 to 1.6.0 ([ff6c190](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/ff6c190668ade544075878ac63a4b19c837bdb07))
+
 ## [1.0.15](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.14...v1.0.15) (2021-09-27)
 
 
