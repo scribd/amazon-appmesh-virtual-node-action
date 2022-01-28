@@ -1,3 +1,10 @@
+## [1.0.27-alpha.1](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.26...v1.0.27-alpha.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* if cannot parse err, just print ([d90c802](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/d90c802d3081d1be505948d9641df4ce412e323d))
+
 ## [1.0.26](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.25...v1.0.26) (2022-01-28)
 
 
