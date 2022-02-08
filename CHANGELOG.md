@@ -1,3 +1,10 @@
+## [1.0.29](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.28...v1.0.29) (2022-02-08)
+
+
+### Reverts
+
+* Revert "ci: fix: reset alpha branch on release" ([f5ea66d](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/f5ea66dae2c6d26f256a8021698d88a99a177e39))
+
 ## [1.0.28](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.27...v1.0.28) (2022-02-08)
 
 
