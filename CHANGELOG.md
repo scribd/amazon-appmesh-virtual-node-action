@@ -1,3 +1,10 @@
+## [1.0.32](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.31...v1.0.32) (2022-02-11)
+
+
+### Bug Fixes
+
+* ci: new_release_channel is undefined when default channel is published ([8b7ed74](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/8b7ed74f3abdfe8a9d38b1942c6f51e2c68fc5a4))
+
 ## [1.0.31](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.30...v1.0.31) (2022-02-11)
 
 
