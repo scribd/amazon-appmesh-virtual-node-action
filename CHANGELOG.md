@@ -1,3 +1,10 @@
+## [1.0.36](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.35...v1.0.36) (2022-04-06)
+
+
+### Bug Fixes
+
+* **deps:** bump yaml from 1.10.2 to 2.0.0 ([3baae59](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/3baae59705316f69698859178cca528a60fc6747))
+
 ## [1.0.35](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.34...v1.0.35) (2022-03-30)
 
 
