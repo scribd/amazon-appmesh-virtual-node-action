@@ -792,6 +792,13 @@ Object.defineProperty(exports, "summary", ({ enumerable: true, get: function () 
  */
 var summary_2 = __nccwpck_require__(1327);
 Object.defineProperty(exports, "markdownSummary", ({ enumerable: true, get: function () { return summary_2.markdownSummary; } }));
+/**
+ * Path exports
+ */
+var path_utils_1 = __nccwpck_require__(2981);
+Object.defineProperty(exports, "toPosixPath", ({ enumerable: true, get: function () { return path_utils_1.toPosixPath; } }));
+Object.defineProperty(exports, "toWin32Path", ({ enumerable: true, get: function () { return path_utils_1.toWin32Path; } }));
+Object.defineProperty(exports, "toPlatformPath", ({ enumerable: true, get: function () { return path_utils_1.toPlatformPath; } }));
 //# sourceMappingURL=core.js.map
 
 /***/ }),
@@ -926,6 +933,71 @@ class OidcClient {
 }
 exports.OidcClient = OidcClient;
 //# sourceMappingURL=oidc-utils.js.map
+
+/***/ }),
+
+/***/ 2981:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.toPlatformPath = exports.toWin32Path = exports.toPosixPath = void 0;
+const path = __importStar(__nccwpck_require__(1017));
+/**
+ * toPosixPath converts the given path to the posix form. On Windows, \\ will be
+ * replaced with /.
+ *
+ * @param pth. Path to transform.
+ * @return string Posix path.
+ */
+function toPosixPath(pth) {
+    return pth.replace(/[\\]/g, '/');
+}
+exports.toPosixPath = toPosixPath;
+/**
+ * toWin32Path converts the given path to the win32 form. On Linux, / will be
+ * replaced with \\.
+ *
+ * @param pth. Path to transform.
+ * @return string Win32 path.
+ */
+function toWin32Path(pth) {
+    return pth.replace(/[/]/g, '\\');
+}
+exports.toWin32Path = toWin32Path;
+/**
+ * toPlatformPath converts the given path to a platform-specific path. It does
+ * this by replacing instances of / and \ with the platform-specific path
+ * separator.
+ *
+ * @param pth The path to platformize.
+ * @return string The platform-specific path.
+ */
+function toPlatformPath(pth) {
+    return pth.replace(/[/\\]/g, path.sep);
+}
+exports.toPlatformPath = toPlatformPath;
+//# sourceMappingURL=path-utils.js.map
 
 /***/ }),
 
@@ -7098,12 +7170,9 @@ const serializeAws_restJson1CreateGatewayRouteCommand = async (input, context) =
     let body;
     body = JSON.stringify({
         clientToken: (_a = input.clientToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.gatewayRouteName !== undefined &&
-            input.gatewayRouteName !== null && { gatewayRouteName: input.gatewayRouteName }),
-        ...(input.spec !== undefined &&
-            input.spec !== null && { spec: serializeAws_restJson1GatewayRouteSpec(input.spec, context) }),
-        ...(input.tags !== undefined &&
-            input.tags !== null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
+        ...(input.gatewayRouteName != null && { gatewayRouteName: input.gatewayRouteName }),
+        ...(input.spec != null && { spec: serializeAws_restJson1GatewayRouteSpec(input.spec, context) }),
+        ...(input.tags != null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -7127,11 +7196,9 @@ const serializeAws_restJson1CreateMeshCommand = async (input, context) => {
     let body;
     body = JSON.stringify({
         clientToken: (_a = input.clientToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.meshName !== undefined && input.meshName !== null && { meshName: input.meshName }),
-        ...(input.spec !== undefined &&
-            input.spec !== null && { spec: serializeAws_restJson1MeshSpec(input.spec, context) }),
-        ...(input.tags !== undefined &&
-            input.tags !== null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
+        ...(input.meshName != null && { meshName: input.meshName }),
+        ...(input.spec != null && { spec: serializeAws_restJson1MeshSpec(input.spec, context) }),
+        ...(input.tags != null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -7178,11 +7245,9 @@ const serializeAws_restJson1CreateRouteCommand = async (input, context) => {
     let body;
     body = JSON.stringify({
         clientToken: (_a = input.clientToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.routeName !== undefined && input.routeName !== null && { routeName: input.routeName }),
-        ...(input.spec !== undefined &&
-            input.spec !== null && { spec: serializeAws_restJson1RouteSpec(input.spec, context) }),
-        ...(input.tags !== undefined &&
-            input.tags !== null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
+        ...(input.routeName != null && { routeName: input.routeName }),
+        ...(input.spec != null && { spec: serializeAws_restJson1RouteSpec(input.spec, context) }),
+        ...(input.tags != null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -7220,12 +7285,9 @@ const serializeAws_restJson1CreateVirtualGatewayCommand = async (input, context)
     let body;
     body = JSON.stringify({
         clientToken: (_a = input.clientToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.spec !== undefined &&
-            input.spec !== null && { spec: serializeAws_restJson1VirtualGatewaySpec(input.spec, context) }),
-        ...(input.tags !== undefined &&
-            input.tags !== null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
-        ...(input.virtualGatewayName !== undefined &&
-            input.virtualGatewayName !== null && { virtualGatewayName: input.virtualGatewayName }),
+        ...(input.spec != null && { spec: serializeAws_restJson1VirtualGatewaySpec(input.spec, context) }),
+        ...(input.tags != null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
+        ...(input.virtualGatewayName != null && { virtualGatewayName: input.virtualGatewayName }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -7262,12 +7324,9 @@ const serializeAws_restJson1CreateVirtualNodeCommand = async (input, context) =>
     let body;
     body = JSON.stringify({
         clientToken: (_a = input.clientToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.spec !== undefined &&
-            input.spec !== null && { spec: serializeAws_restJson1VirtualNodeSpec(input.spec, context) }),
-        ...(input.tags !== undefined &&
-            input.tags !== null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
-        ...(input.virtualNodeName !== undefined &&
-            input.virtualNodeName !== null && { virtualNodeName: input.virtualNodeName }),
+        ...(input.spec != null && { spec: serializeAws_restJson1VirtualNodeSpec(input.spec, context) }),
+        ...(input.tags != null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
+        ...(input.virtualNodeName != null && { virtualNodeName: input.virtualNodeName }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -7305,12 +7364,9 @@ const serializeAws_restJson1CreateVirtualRouterCommand = async (input, context) 
     let body;
     body = JSON.stringify({
         clientToken: (_a = input.clientToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.spec !== undefined &&
-            input.spec !== null && { spec: serializeAws_restJson1VirtualRouterSpec(input.spec, context) }),
-        ...(input.tags !== undefined &&
-            input.tags !== null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
-        ...(input.virtualRouterName !== undefined &&
-            input.virtualRouterName !== null && { virtualRouterName: input.virtualRouterName }),
+        ...(input.spec != null && { spec: serializeAws_restJson1VirtualRouterSpec(input.spec, context) }),
+        ...(input.tags != null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
+        ...(input.virtualRouterName != null && { virtualRouterName: input.virtualRouterName }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -7348,12 +7404,9 @@ const serializeAws_restJson1CreateVirtualServiceCommand = async (input, context)
     let body;
     body = JSON.stringify({
         clientToken: (_a = input.clientToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.spec !== undefined &&
-            input.spec !== null && { spec: serializeAws_restJson1VirtualServiceSpec(input.spec, context) }),
-        ...(input.tags !== undefined &&
-            input.tags !== null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
-        ...(input.virtualServiceName !== undefined &&
-            input.virtualServiceName !== null && { virtualServiceName: input.virtualServiceName }),
+        ...(input.spec != null && { spec: serializeAws_restJson1VirtualServiceSpec(input.spec, context) }),
+        ...(input.tags != null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
+        ...(input.virtualServiceName != null && { virtualServiceName: input.virtualServiceName }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -8226,8 +8279,7 @@ const serializeAws_restJson1TagResourceCommand = async (input, context) => {
     };
     let body;
     body = JSON.stringify({
-        ...(input.tags !== undefined &&
-            input.tags !== null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
+        ...(input.tags != null && { tags: serializeAws_restJson1TagList(input.tags, context) }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -8252,8 +8304,7 @@ const serializeAws_restJson1UntagResourceCommand = async (input, context) => {
     };
     let body;
     body = JSON.stringify({
-        ...(input.tagKeys !== undefined &&
-            input.tagKeys !== null && { tagKeys: serializeAws_restJson1TagKeyList(input.tagKeys, context) }),
+        ...(input.tagKeys != null && { tagKeys: serializeAws_restJson1TagKeyList(input.tagKeys, context) }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -8311,8 +8362,7 @@ const serializeAws_restJson1UpdateGatewayRouteCommand = async (input, context) =
     let body;
     body = JSON.stringify({
         clientToken: (_a = input.clientToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.spec !== undefined &&
-            input.spec !== null && { spec: serializeAws_restJson1GatewayRouteSpec(input.spec, context) }),
+        ...(input.spec != null && { spec: serializeAws_restJson1GatewayRouteSpec(input.spec, context) }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -8346,8 +8396,7 @@ const serializeAws_restJson1UpdateMeshCommand = async (input, context) => {
     let body;
     body = JSON.stringify({
         clientToken: (_a = input.clientToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.spec !== undefined &&
-            input.spec !== null && { spec: serializeAws_restJson1MeshSpec(input.spec, context) }),
+        ...(input.spec != null && { spec: serializeAws_restJson1MeshSpec(input.spec, context) }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -8404,8 +8453,7 @@ const serializeAws_restJson1UpdateRouteCommand = async (input, context) => {
     let body;
     body = JSON.stringify({
         clientToken: (_a = input.clientToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.spec !== undefined &&
-            input.spec !== null && { spec: serializeAws_restJson1RouteSpec(input.spec, context) }),
+        ...(input.spec != null && { spec: serializeAws_restJson1RouteSpec(input.spec, context) }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -8453,8 +8501,7 @@ const serializeAws_restJson1UpdateVirtualGatewayCommand = async (input, context)
     let body;
     body = JSON.stringify({
         clientToken: (_a = input.clientToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.spec !== undefined &&
-            input.spec !== null && { spec: serializeAws_restJson1VirtualGatewaySpec(input.spec, context) }),
+        ...(input.spec != null && { spec: serializeAws_restJson1VirtualGatewaySpec(input.spec, context) }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -8502,8 +8549,7 @@ const serializeAws_restJson1UpdateVirtualNodeCommand = async (input, context) =>
     let body;
     body = JSON.stringify({
         clientToken: (_a = input.clientToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.spec !== undefined &&
-            input.spec !== null && { spec: serializeAws_restJson1VirtualNodeSpec(input.spec, context) }),
+        ...(input.spec != null && { spec: serializeAws_restJson1VirtualNodeSpec(input.spec, context) }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -8551,8 +8597,7 @@ const serializeAws_restJson1UpdateVirtualRouterCommand = async (input, context) 
     let body;
     body = JSON.stringify({
         clientToken: (_a = input.clientToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.spec !== undefined &&
-            input.spec !== null && { spec: serializeAws_restJson1VirtualRouterSpec(input.spec, context) }),
+        ...(input.spec != null && { spec: serializeAws_restJson1VirtualRouterSpec(input.spec, context) }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -8600,8 +8645,7 @@ const serializeAws_restJson1UpdateVirtualServiceCommand = async (input, context)
     let body;
     body = JSON.stringify({
         clientToken: (_a = input.clientToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.spec !== undefined &&
-            input.spec !== null && { spec: serializeAws_restJson1VirtualServiceSpec(input.spec, context) }),
+        ...(input.spec != null && { spec: serializeAws_restJson1VirtualServiceSpec(input.spec, context) }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -8634,8 +8678,7 @@ const deserializeAws_restJson1CreateGatewayRouteCommandError = async (output, co
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -8663,10 +8706,12 @@ const deserializeAws_restJson1CreateGatewayRouteCommandError = async (output, co
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -8690,8 +8735,7 @@ const deserializeAws_restJson1CreateMeshCommandError = async (output, context) =
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -8719,10 +8763,12 @@ const deserializeAws_restJson1CreateMeshCommandError = async (output, context) =
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -8746,8 +8792,7 @@ const deserializeAws_restJson1CreateRouteCommandError = async (output, context) 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -8775,10 +8820,12 @@ const deserializeAws_restJson1CreateRouteCommandError = async (output, context) 
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -8802,8 +8849,7 @@ const deserializeAws_restJson1CreateVirtualGatewayCommandError = async (output, 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -8831,10 +8877,12 @@ const deserializeAws_restJson1CreateVirtualGatewayCommandError = async (output, 
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -8858,8 +8906,7 @@ const deserializeAws_restJson1CreateVirtualNodeCommandError = async (output, con
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -8887,10 +8934,12 @@ const deserializeAws_restJson1CreateVirtualNodeCommandError = async (output, con
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -8914,8 +8963,7 @@ const deserializeAws_restJson1CreateVirtualRouterCommandError = async (output, c
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -8943,10 +8991,12 @@ const deserializeAws_restJson1CreateVirtualRouterCommandError = async (output, c
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -8970,8 +9020,7 @@ const deserializeAws_restJson1CreateVirtualServiceCommandError = async (output, 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -8999,10 +9048,12 @@ const deserializeAws_restJson1CreateVirtualServiceCommandError = async (output, 
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9026,8 +9077,7 @@ const deserializeAws_restJson1DeleteGatewayRouteCommandError = async (output, co
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9052,10 +9102,12 @@ const deserializeAws_restJson1DeleteGatewayRouteCommandError = async (output, co
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9079,8 +9131,7 @@ const deserializeAws_restJson1DeleteMeshCommandError = async (output, context) =
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9105,10 +9156,12 @@ const deserializeAws_restJson1DeleteMeshCommandError = async (output, context) =
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9132,8 +9185,7 @@ const deserializeAws_restJson1DeleteRouteCommandError = async (output, context) 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9158,10 +9210,12 @@ const deserializeAws_restJson1DeleteRouteCommandError = async (output, context) 
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9185,8 +9239,7 @@ const deserializeAws_restJson1DeleteVirtualGatewayCommandError = async (output, 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9211,10 +9264,12 @@ const deserializeAws_restJson1DeleteVirtualGatewayCommandError = async (output, 
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9238,8 +9293,7 @@ const deserializeAws_restJson1DeleteVirtualNodeCommandError = async (output, con
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9264,10 +9318,12 @@ const deserializeAws_restJson1DeleteVirtualNodeCommandError = async (output, con
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9291,8 +9347,7 @@ const deserializeAws_restJson1DeleteVirtualRouterCommandError = async (output, c
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9317,10 +9372,12 @@ const deserializeAws_restJson1DeleteVirtualRouterCommandError = async (output, c
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9344,8 +9401,7 @@ const deserializeAws_restJson1DeleteVirtualServiceCommandError = async (output, 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9370,10 +9426,12 @@ const deserializeAws_restJson1DeleteVirtualServiceCommandError = async (output, 
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9397,8 +9455,7 @@ const deserializeAws_restJson1DescribeGatewayRouteCommandError = async (output, 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9420,10 +9477,12 @@ const deserializeAws_restJson1DescribeGatewayRouteCommandError = async (output, 
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9447,8 +9506,7 @@ const deserializeAws_restJson1DescribeMeshCommandError = async (output, context)
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9470,10 +9528,12 @@ const deserializeAws_restJson1DescribeMeshCommandError = async (output, context)
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9497,8 +9557,7 @@ const deserializeAws_restJson1DescribeRouteCommandError = async (output, context
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9520,10 +9579,12 @@ const deserializeAws_restJson1DescribeRouteCommandError = async (output, context
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9547,8 +9608,7 @@ const deserializeAws_restJson1DescribeVirtualGatewayCommandError = async (output
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9570,10 +9630,12 @@ const deserializeAws_restJson1DescribeVirtualGatewayCommandError = async (output
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9597,8 +9659,7 @@ const deserializeAws_restJson1DescribeVirtualNodeCommandError = async (output, c
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9620,10 +9681,12 @@ const deserializeAws_restJson1DescribeVirtualNodeCommandError = async (output, c
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9647,8 +9710,7 @@ const deserializeAws_restJson1DescribeVirtualRouterCommandError = async (output,
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9670,10 +9732,12 @@ const deserializeAws_restJson1DescribeVirtualRouterCommandError = async (output,
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9697,8 +9761,7 @@ const deserializeAws_restJson1DescribeVirtualServiceCommandError = async (output
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9720,10 +9783,12 @@ const deserializeAws_restJson1DescribeVirtualServiceCommandError = async (output
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9753,8 +9818,7 @@ const deserializeAws_restJson1ListGatewayRoutesCommandError = async (output, con
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9776,10 +9840,12 @@ const deserializeAws_restJson1ListGatewayRoutesCommandError = async (output, con
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9809,8 +9875,7 @@ const deserializeAws_restJson1ListMeshesCommandError = async (output, context) =
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9832,10 +9897,12 @@ const deserializeAws_restJson1ListMeshesCommandError = async (output, context) =
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9865,8 +9932,7 @@ const deserializeAws_restJson1ListRoutesCommandError = async (output, context) =
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9888,10 +9954,12 @@ const deserializeAws_restJson1ListRoutesCommandError = async (output, context) =
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9921,8 +9989,7 @@ const deserializeAws_restJson1ListTagsForResourceCommandError = async (output, c
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -9944,10 +10011,12 @@ const deserializeAws_restJson1ListTagsForResourceCommandError = async (output, c
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -9977,8 +10046,7 @@ const deserializeAws_restJson1ListVirtualGatewaysCommandError = async (output, c
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -10000,10 +10068,12 @@ const deserializeAws_restJson1ListVirtualGatewaysCommandError = async (output, c
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -10033,8 +10103,7 @@ const deserializeAws_restJson1ListVirtualNodesCommandError = async (output, cont
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -10056,10 +10125,12 @@ const deserializeAws_restJson1ListVirtualNodesCommandError = async (output, cont
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -10089,8 +10160,7 @@ const deserializeAws_restJson1ListVirtualRoutersCommandError = async (output, co
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -10112,10 +10182,12 @@ const deserializeAws_restJson1ListVirtualRoutersCommandError = async (output, co
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -10145,8 +10217,7 @@ const deserializeAws_restJson1ListVirtualServicesCommandError = async (output, c
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -10168,10 +10239,12 @@ const deserializeAws_restJson1ListVirtualServicesCommandError = async (output, c
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -10193,8 +10266,7 @@ const deserializeAws_restJson1TagResourceCommandError = async (output, context) 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -10219,10 +10291,12 @@ const deserializeAws_restJson1TagResourceCommandError = async (output, context) 
             throw await deserializeAws_restJson1TooManyTagsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -10244,8 +10318,7 @@ const deserializeAws_restJson1UntagResourceCommandError = async (output, context
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -10267,10 +10340,12 @@ const deserializeAws_restJson1UntagResourceCommandError = async (output, context
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -10294,8 +10369,7 @@ const deserializeAws_restJson1UpdateGatewayRouteCommandError = async (output, co
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -10323,10 +10397,12 @@ const deserializeAws_restJson1UpdateGatewayRouteCommandError = async (output, co
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -10350,8 +10426,7 @@ const deserializeAws_restJson1UpdateMeshCommandError = async (output, context) =
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -10376,10 +10451,12 @@ const deserializeAws_restJson1UpdateMeshCommandError = async (output, context) =
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -10403,8 +10480,7 @@ const deserializeAws_restJson1UpdateRouteCommandError = async (output, context) 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -10432,10 +10508,12 @@ const deserializeAws_restJson1UpdateRouteCommandError = async (output, context) 
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -10459,8 +10537,7 @@ const deserializeAws_restJson1UpdateVirtualGatewayCommandError = async (output, 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -10488,10 +10565,12 @@ const deserializeAws_restJson1UpdateVirtualGatewayCommandError = async (output, 
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -10515,8 +10594,7 @@ const deserializeAws_restJson1UpdateVirtualNodeCommandError = async (output, con
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -10544,10 +10622,12 @@ const deserializeAws_restJson1UpdateVirtualNodeCommandError = async (output, con
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -10571,8 +10651,7 @@ const deserializeAws_restJson1UpdateVirtualRouterCommandError = async (output, c
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -10600,10 +10679,12 @@ const deserializeAws_restJson1UpdateVirtualRouterCommandError = async (output, c
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -10627,8 +10708,7 @@ const deserializeAws_restJson1UpdateVirtualServiceCommandError = async (output, 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "BadRequestException":
         case "com.amazonaws.appmesh#BadRequestException":
@@ -10656,10 +10736,12 @@ const deserializeAws_restJson1UpdateVirtualServiceCommandError = async (output, 
             throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new AppMeshServiceException_1.AppMeshServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -10792,8 +10874,8 @@ const serializeAws_restJson1AccessLog = (input, context) => {
 };
 const serializeAws_restJson1AwsCloudMapInstanceAttribute = (input, context) => {
     return {
-        ...(input.key !== undefined && input.key !== null && { key: input.key }),
-        ...(input.value !== undefined && input.value !== null && { value: input.value }),
+        ...(input.key != null && { key: input.key }),
+        ...(input.value != null && { value: input.value }),
     };
 };
 const serializeAws_restJson1AwsCloudMapInstanceAttributes = (input, context) => {
@@ -10808,13 +10890,12 @@ const serializeAws_restJson1AwsCloudMapInstanceAttributes = (input, context) => 
 };
 const serializeAws_restJson1AwsCloudMapServiceDiscovery = (input, context) => {
     return {
-        ...(input.attributes !== undefined &&
-            input.attributes !== null && {
+        ...(input.attributes != null && {
             attributes: serializeAws_restJson1AwsCloudMapInstanceAttributes(input.attributes, context),
         }),
-        ...(input.ipPreference !== undefined && input.ipPreference !== null && { ipPreference: input.ipPreference }),
-        ...(input.namespaceName !== undefined && input.namespaceName !== null && { namespaceName: input.namespaceName }),
-        ...(input.serviceName !== undefined && input.serviceName !== null && { serviceName: input.serviceName }),
+        ...(input.ipPreference != null && { ipPreference: input.ipPreference }),
+        ...(input.namespaceName != null && { namespaceName: input.namespaceName }),
+        ...(input.serviceName != null && { serviceName: input.serviceName }),
     };
 };
 const serializeAws_restJson1Backend = (input, context) => {
@@ -10825,8 +10906,9 @@ const serializeAws_restJson1Backend = (input, context) => {
 };
 const serializeAws_restJson1BackendDefaults = (input, context) => {
     return {
-        ...(input.clientPolicy !== undefined &&
-            input.clientPolicy !== null && { clientPolicy: serializeAws_restJson1ClientPolicy(input.clientPolicy, context) }),
+        ...(input.clientPolicy != null && {
+            clientPolicy: serializeAws_restJson1ClientPolicy(input.clientPolicy, context),
+        }),
     };
 };
 const serializeAws_restJson1Backends = (input, context) => {
@@ -10851,21 +10933,17 @@ const serializeAws_restJson1CertificateAuthorityArns = (input, context) => {
 };
 const serializeAws_restJson1ClientPolicy = (input, context) => {
     return {
-        ...(input.tls !== undefined &&
-            input.tls !== null && { tls: serializeAws_restJson1ClientPolicyTls(input.tls, context) }),
+        ...(input.tls != null && { tls: serializeAws_restJson1ClientPolicyTls(input.tls, context) }),
     };
 };
 const serializeAws_restJson1ClientPolicyTls = (input, context) => {
     return {
-        ...(input.certificate !== undefined &&
-            input.certificate !== null && {
+        ...(input.certificate != null && {
             certificate: serializeAws_restJson1ClientTlsCertificate(input.certificate, context),
         }),
-        ...(input.enforce !== undefined && input.enforce !== null && { enforce: input.enforce }),
-        ...(input.ports !== undefined &&
-            input.ports !== null && { ports: serializeAws_restJson1PortSet(input.ports, context) }),
-        ...(input.validation !== undefined &&
-            input.validation !== null && {
+        ...(input.enforce != null && { enforce: input.enforce }),
+        ...(input.ports != null && { ports: serializeAws_restJson1PortSet(input.ports, context) }),
+        ...(input.validation != null && {
             validation: serializeAws_restJson1TlsValidationContext(input.validation, context),
         }),
     };
@@ -10879,99 +10957,86 @@ const serializeAws_restJson1ClientTlsCertificate = (input, context) => {
 };
 const serializeAws_restJson1DnsServiceDiscovery = (input, context) => {
     return {
-        ...(input.hostname !== undefined && input.hostname !== null && { hostname: input.hostname }),
-        ...(input.ipPreference !== undefined && input.ipPreference !== null && { ipPreference: input.ipPreference }),
-        ...(input.responseType !== undefined && input.responseType !== null && { responseType: input.responseType }),
+        ...(input.hostname != null && { hostname: input.hostname }),
+        ...(input.ipPreference != null && { ipPreference: input.ipPreference }),
+        ...(input.responseType != null && { responseType: input.responseType }),
     };
 };
 const serializeAws_restJson1Duration = (input, context) => {
     return {
-        ...(input.unit !== undefined && input.unit !== null && { unit: input.unit }),
-        ...(input.value !== undefined && input.value !== null && { value: input.value }),
+        ...(input.unit != null && { unit: input.unit }),
+        ...(input.value != null && { value: input.value }),
     };
 };
 const serializeAws_restJson1EgressFilter = (input, context) => {
     return {
-        ...(input.type !== undefined && input.type !== null && { type: input.type }),
+        ...(input.type != null && { type: input.type }),
     };
 };
 const serializeAws_restJson1FileAccessLog = (input, context) => {
     return {
-        ...(input.path !== undefined && input.path !== null && { path: input.path }),
+        ...(input.path != null && { path: input.path }),
     };
 };
 const serializeAws_restJson1GatewayRouteHostnameMatch = (input, context) => {
     return {
-        ...(input.exact !== undefined && input.exact !== null && { exact: input.exact }),
-        ...(input.suffix !== undefined && input.suffix !== null && { suffix: input.suffix }),
+        ...(input.exact != null && { exact: input.exact }),
+        ...(input.suffix != null && { suffix: input.suffix }),
     };
 };
 const serializeAws_restJson1GatewayRouteHostnameRewrite = (input, context) => {
     return {
-        ...(input.defaultTargetHostname !== undefined &&
-            input.defaultTargetHostname !== null && { defaultTargetHostname: input.defaultTargetHostname }),
+        ...(input.defaultTargetHostname != null && { defaultTargetHostname: input.defaultTargetHostname }),
     };
 };
 const serializeAws_restJson1GatewayRouteSpec = (input, context) => {
     return {
-        ...(input.grpcRoute !== undefined &&
-            input.grpcRoute !== null && { grpcRoute: serializeAws_restJson1GrpcGatewayRoute(input.grpcRoute, context) }),
-        ...(input.http2Route !== undefined &&
-            input.http2Route !== null && { http2Route: serializeAws_restJson1HttpGatewayRoute(input.http2Route, context) }),
-        ...(input.httpRoute !== undefined &&
-            input.httpRoute !== null && { httpRoute: serializeAws_restJson1HttpGatewayRoute(input.httpRoute, context) }),
-        ...(input.priority !== undefined && input.priority !== null && { priority: input.priority }),
+        ...(input.grpcRoute != null && { grpcRoute: serializeAws_restJson1GrpcGatewayRoute(input.grpcRoute, context) }),
+        ...(input.http2Route != null && { http2Route: serializeAws_restJson1HttpGatewayRoute(input.http2Route, context) }),
+        ...(input.httpRoute != null && { httpRoute: serializeAws_restJson1HttpGatewayRoute(input.httpRoute, context) }),
+        ...(input.priority != null && { priority: input.priority }),
     };
 };
 const serializeAws_restJson1GatewayRouteTarget = (input, context) => {
     return {
-        ...(input.virtualService !== undefined &&
-            input.virtualService !== null && {
+        ...(input.virtualService != null && {
             virtualService: serializeAws_restJson1GatewayRouteVirtualService(input.virtualService, context),
         }),
     };
 };
 const serializeAws_restJson1GatewayRouteVirtualService = (input, context) => {
     return {
-        ...(input.virtualServiceName !== undefined &&
-            input.virtualServiceName !== null && { virtualServiceName: input.virtualServiceName }),
+        ...(input.virtualServiceName != null && { virtualServiceName: input.virtualServiceName }),
     };
 };
 const serializeAws_restJson1GrpcGatewayRoute = (input, context) => {
     return {
-        ...(input.action !== undefined &&
-            input.action !== null && { action: serializeAws_restJson1GrpcGatewayRouteAction(input.action, context) }),
-        ...(input.match !== undefined &&
-            input.match !== null && { match: serializeAws_restJson1GrpcGatewayRouteMatch(input.match, context) }),
+        ...(input.action != null && { action: serializeAws_restJson1GrpcGatewayRouteAction(input.action, context) }),
+        ...(input.match != null && { match: serializeAws_restJson1GrpcGatewayRouteMatch(input.match, context) }),
     };
 };
 const serializeAws_restJson1GrpcGatewayRouteAction = (input, context) => {
     return {
-        ...(input.rewrite !== undefined &&
-            input.rewrite !== null && { rewrite: serializeAws_restJson1GrpcGatewayRouteRewrite(input.rewrite, context) }),
-        ...(input.target !== undefined &&
-            input.target !== null && { target: serializeAws_restJson1GatewayRouteTarget(input.target, context) }),
+        ...(input.rewrite != null && { rewrite: serializeAws_restJson1GrpcGatewayRouteRewrite(input.rewrite, context) }),
+        ...(input.target != null && { target: serializeAws_restJson1GatewayRouteTarget(input.target, context) }),
     };
 };
 const serializeAws_restJson1GrpcGatewayRouteMatch = (input, context) => {
     return {
-        ...(input.hostname !== undefined &&
-            input.hostname !== null && {
+        ...(input.hostname != null && {
             hostname: serializeAws_restJson1GatewayRouteHostnameMatch(input.hostname, context),
         }),
-        ...(input.metadata !== undefined &&
-            input.metadata !== null && {
+        ...(input.metadata != null && {
             metadata: serializeAws_restJson1GrpcGatewayRouteMetadataList(input.metadata, context),
         }),
-        ...(input.serviceName !== undefined && input.serviceName !== null && { serviceName: input.serviceName }),
+        ...(input.serviceName != null && { serviceName: input.serviceName }),
     };
 };
 const serializeAws_restJson1GrpcGatewayRouteMetadata = (input, context) => {
     return {
-        ...(input.invert !== undefined && input.invert !== null && { invert: input.invert }),
-        ...(input.match !== undefined &&
-            input.match !== null && { match: serializeAws_restJson1GrpcMetadataMatchMethod(input.match, context) }),
-        ...(input.name !== undefined && input.name !== null && { name: input.name }),
+        ...(input.invert != null && { invert: input.invert }),
+        ...(input.match != null && { match: serializeAws_restJson1GrpcMetadataMatchMethod(input.match, context) }),
+        ...(input.name != null && { name: input.name }),
     };
 };
 const serializeAws_restJson1GrpcGatewayRouteMetadataList = (input, context) => {
@@ -10986,8 +11051,7 @@ const serializeAws_restJson1GrpcGatewayRouteMetadataList = (input, context) => {
 };
 const serializeAws_restJson1GrpcGatewayRouteRewrite = (input, context) => {
     return {
-        ...(input.hostname !== undefined &&
-            input.hostname !== null && {
+        ...(input.hostname != null && {
             hostname: serializeAws_restJson1GatewayRouteHostnameRewrite(input.hostname, context),
         }),
     };
@@ -11004,21 +11068,17 @@ const serializeAws_restJson1GrpcMetadataMatchMethod = (input, context) => {
 };
 const serializeAws_restJson1GrpcRetryPolicy = (input, context) => {
     return {
-        ...(input.grpcRetryEvents !== undefined &&
-            input.grpcRetryEvents !== null && {
+        ...(input.grpcRetryEvents != null && {
             grpcRetryEvents: serializeAws_restJson1GrpcRetryPolicyEvents(input.grpcRetryEvents, context),
         }),
-        ...(input.httpRetryEvents !== undefined &&
-            input.httpRetryEvents !== null && {
+        ...(input.httpRetryEvents != null && {
             httpRetryEvents: serializeAws_restJson1HttpRetryPolicyEvents(input.httpRetryEvents, context),
         }),
-        ...(input.maxRetries !== undefined && input.maxRetries !== null && { maxRetries: input.maxRetries }),
-        ...(input.perRetryTimeout !== undefined &&
-            input.perRetryTimeout !== null && {
+        ...(input.maxRetries != null && { maxRetries: input.maxRetries }),
+        ...(input.perRetryTimeout != null && {
             perRetryTimeout: serializeAws_restJson1Duration(input.perRetryTimeout, context),
         }),
-        ...(input.tcpRetryEvents !== undefined &&
-            input.tcpRetryEvents !== null && {
+        ...(input.tcpRetryEvents != null && {
             tcpRetryEvents: serializeAws_restJson1TcpRetryPolicyEvents(input.tcpRetryEvents, context),
         }),
     };
@@ -11035,38 +11095,33 @@ const serializeAws_restJson1GrpcRetryPolicyEvents = (input, context) => {
 };
 const serializeAws_restJson1GrpcRoute = (input, context) => {
     return {
-        ...(input.action !== undefined &&
-            input.action !== null && { action: serializeAws_restJson1GrpcRouteAction(input.action, context) }),
-        ...(input.match !== undefined &&
-            input.match !== null && { match: serializeAws_restJson1GrpcRouteMatch(input.match, context) }),
-        ...(input.retryPolicy !== undefined &&
-            input.retryPolicy !== null && { retryPolicy: serializeAws_restJson1GrpcRetryPolicy(input.retryPolicy, context) }),
-        ...(input.timeout !== undefined &&
-            input.timeout !== null && { timeout: serializeAws_restJson1GrpcTimeout(input.timeout, context) }),
+        ...(input.action != null && { action: serializeAws_restJson1GrpcRouteAction(input.action, context) }),
+        ...(input.match != null && { match: serializeAws_restJson1GrpcRouteMatch(input.match, context) }),
+        ...(input.retryPolicy != null && {
+            retryPolicy: serializeAws_restJson1GrpcRetryPolicy(input.retryPolicy, context),
+        }),
+        ...(input.timeout != null && { timeout: serializeAws_restJson1GrpcTimeout(input.timeout, context) }),
     };
 };
 const serializeAws_restJson1GrpcRouteAction = (input, context) => {
     return {
-        ...(input.weightedTargets !== undefined &&
-            input.weightedTargets !== null && {
+        ...(input.weightedTargets != null && {
             weightedTargets: serializeAws_restJson1WeightedTargets(input.weightedTargets, context),
         }),
     };
 };
 const serializeAws_restJson1GrpcRouteMatch = (input, context) => {
     return {
-        ...(input.metadata !== undefined &&
-            input.metadata !== null && { metadata: serializeAws_restJson1GrpcRouteMetadataList(input.metadata, context) }),
-        ...(input.methodName !== undefined && input.methodName !== null && { methodName: input.methodName }),
-        ...(input.serviceName !== undefined && input.serviceName !== null && { serviceName: input.serviceName }),
+        ...(input.metadata != null && { metadata: serializeAws_restJson1GrpcRouteMetadataList(input.metadata, context) }),
+        ...(input.methodName != null && { methodName: input.methodName }),
+        ...(input.serviceName != null && { serviceName: input.serviceName }),
     };
 };
 const serializeAws_restJson1GrpcRouteMetadata = (input, context) => {
     return {
-        ...(input.invert !== undefined && input.invert !== null && { invert: input.invert }),
-        ...(input.match !== undefined &&
-            input.match !== null && { match: serializeAws_restJson1GrpcRouteMetadataMatchMethod(input.match, context) }),
-        ...(input.name !== undefined && input.name !== null && { name: input.name }),
+        ...(input.invert != null && { invert: input.invert }),
+        ...(input.match != null && { match: serializeAws_restJson1GrpcRouteMetadataMatchMethod(input.match, context) }),
+        ...(input.name != null && { name: input.name }),
     };
 };
 const serializeAws_restJson1GrpcRouteMetadataList = (input, context) => {
@@ -11091,10 +11146,8 @@ const serializeAws_restJson1GrpcRouteMetadataMatchMethod = (input, context) => {
 };
 const serializeAws_restJson1GrpcTimeout = (input, context) => {
     return {
-        ...(input.idle !== undefined &&
-            input.idle !== null && { idle: serializeAws_restJson1Duration(input.idle, context) }),
-        ...(input.perRequest !== undefined &&
-            input.perRequest !== null && { perRequest: serializeAws_restJson1Duration(input.perRequest, context) }),
+        ...(input.idle != null && { idle: serializeAws_restJson1Duration(input.idle, context) }),
+        ...(input.perRequest != null && { perRequest: serializeAws_restJson1Duration(input.perRequest, context) }),
     };
 };
 const serializeAws_restJson1HeaderMatchMethod = (input, context) => {
@@ -11109,40 +11162,32 @@ const serializeAws_restJson1HeaderMatchMethod = (input, context) => {
 };
 const serializeAws_restJson1HealthCheckPolicy = (input, context) => {
     return {
-        ...(input.healthyThreshold !== undefined &&
-            input.healthyThreshold !== null && { healthyThreshold: input.healthyThreshold }),
-        ...(input.intervalMillis !== undefined &&
-            input.intervalMillis !== null && { intervalMillis: input.intervalMillis }),
-        ...(input.path !== undefined && input.path !== null && { path: input.path }),
-        ...(input.port !== undefined && input.port !== null && { port: input.port }),
-        ...(input.protocol !== undefined && input.protocol !== null && { protocol: input.protocol }),
-        ...(input.timeoutMillis !== undefined && input.timeoutMillis !== null && { timeoutMillis: input.timeoutMillis }),
-        ...(input.unhealthyThreshold !== undefined &&
-            input.unhealthyThreshold !== null && { unhealthyThreshold: input.unhealthyThreshold }),
+        ...(input.healthyThreshold != null && { healthyThreshold: input.healthyThreshold }),
+        ...(input.intervalMillis != null && { intervalMillis: input.intervalMillis }),
+        ...(input.path != null && { path: input.path }),
+        ...(input.port != null && { port: input.port }),
+        ...(input.protocol != null && { protocol: input.protocol }),
+        ...(input.timeoutMillis != null && { timeoutMillis: input.timeoutMillis }),
+        ...(input.unhealthyThreshold != null && { unhealthyThreshold: input.unhealthyThreshold }),
     };
 };
 const serializeAws_restJson1HttpGatewayRoute = (input, context) => {
     return {
-        ...(input.action !== undefined &&
-            input.action !== null && { action: serializeAws_restJson1HttpGatewayRouteAction(input.action, context) }),
-        ...(input.match !== undefined &&
-            input.match !== null && { match: serializeAws_restJson1HttpGatewayRouteMatch(input.match, context) }),
+        ...(input.action != null && { action: serializeAws_restJson1HttpGatewayRouteAction(input.action, context) }),
+        ...(input.match != null && { match: serializeAws_restJson1HttpGatewayRouteMatch(input.match, context) }),
     };
 };
 const serializeAws_restJson1HttpGatewayRouteAction = (input, context) => {
     return {
-        ...(input.rewrite !== undefined &&
-            input.rewrite !== null && { rewrite: serializeAws_restJson1HttpGatewayRouteRewrite(input.rewrite, context) }),
-        ...(input.target !== undefined &&
-            input.target !== null && { target: serializeAws_restJson1GatewayRouteTarget(input.target, context) }),
+        ...(input.rewrite != null && { rewrite: serializeAws_restJson1HttpGatewayRouteRewrite(input.rewrite, context) }),
+        ...(input.target != null && { target: serializeAws_restJson1GatewayRouteTarget(input.target, context) }),
     };
 };
 const serializeAws_restJson1HttpGatewayRouteHeader = (input, context) => {
     return {
-        ...(input.invert !== undefined && input.invert !== null && { invert: input.invert }),
-        ...(input.match !== undefined &&
-            input.match !== null && { match: serializeAws_restJson1HeaderMatchMethod(input.match, context) }),
-        ...(input.name !== undefined && input.name !== null && { name: input.name }),
+        ...(input.invert != null && { invert: input.invert }),
+        ...(input.match != null && { match: serializeAws_restJson1HeaderMatchMethod(input.match, context) }),
+        ...(input.name != null && { name: input.name }),
     };
 };
 const serializeAws_restJson1HttpGatewayRouteHeaders = (input, context) => {
@@ -11157,56 +11202,48 @@ const serializeAws_restJson1HttpGatewayRouteHeaders = (input, context) => {
 };
 const serializeAws_restJson1HttpGatewayRouteMatch = (input, context) => {
     return {
-        ...(input.headers !== undefined &&
-            input.headers !== null && { headers: serializeAws_restJson1HttpGatewayRouteHeaders(input.headers, context) }),
-        ...(input.hostname !== undefined &&
-            input.hostname !== null && {
+        ...(input.headers != null && { headers: serializeAws_restJson1HttpGatewayRouteHeaders(input.headers, context) }),
+        ...(input.hostname != null && {
             hostname: serializeAws_restJson1GatewayRouteHostnameMatch(input.hostname, context),
         }),
-        ...(input.method !== undefined && input.method !== null && { method: input.method }),
-        ...(input.path !== undefined &&
-            input.path !== null && { path: serializeAws_restJson1HttpPathMatch(input.path, context) }),
-        ...(input.prefix !== undefined && input.prefix !== null && { prefix: input.prefix }),
-        ...(input.queryParameters !== undefined &&
-            input.queryParameters !== null && {
+        ...(input.method != null && { method: input.method }),
+        ...(input.path != null && { path: serializeAws_restJson1HttpPathMatch(input.path, context) }),
+        ...(input.prefix != null && { prefix: input.prefix }),
+        ...(input.queryParameters != null && {
             queryParameters: serializeAws_restJson1HttpQueryParameters(input.queryParameters, context),
         }),
     };
 };
 const serializeAws_restJson1HttpGatewayRoutePathRewrite = (input, context) => {
     return {
-        ...(input.exact !== undefined && input.exact !== null && { exact: input.exact }),
+        ...(input.exact != null && { exact: input.exact }),
     };
 };
 const serializeAws_restJson1HttpGatewayRoutePrefixRewrite = (input, context) => {
     return {
-        ...(input.defaultPrefix !== undefined && input.defaultPrefix !== null && { defaultPrefix: input.defaultPrefix }),
-        ...(input.value !== undefined && input.value !== null && { value: input.value }),
+        ...(input.defaultPrefix != null && { defaultPrefix: input.defaultPrefix }),
+        ...(input.value != null && { value: input.value }),
     };
 };
 const serializeAws_restJson1HttpGatewayRouteRewrite = (input, context) => {
     return {
-        ...(input.hostname !== undefined &&
-            input.hostname !== null && {
+        ...(input.hostname != null && {
             hostname: serializeAws_restJson1GatewayRouteHostnameRewrite(input.hostname, context),
         }),
-        ...(input.path !== undefined &&
-            input.path !== null && { path: serializeAws_restJson1HttpGatewayRoutePathRewrite(input.path, context) }),
-        ...(input.prefix !== undefined &&
-            input.prefix !== null && { prefix: serializeAws_restJson1HttpGatewayRoutePrefixRewrite(input.prefix, context) }),
+        ...(input.path != null && { path: serializeAws_restJson1HttpGatewayRoutePathRewrite(input.path, context) }),
+        ...(input.prefix != null && { prefix: serializeAws_restJson1HttpGatewayRoutePrefixRewrite(input.prefix, context) }),
     };
 };
 const serializeAws_restJson1HttpPathMatch = (input, context) => {
     return {
-        ...(input.exact !== undefined && input.exact !== null && { exact: input.exact }),
-        ...(input.regex !== undefined && input.regex !== null && { regex: input.regex }),
+        ...(input.exact != null && { exact: input.exact }),
+        ...(input.regex != null && { regex: input.regex }),
     };
 };
 const serializeAws_restJson1HttpQueryParameter = (input, context) => {
     return {
-        ...(input.match !== undefined &&
-            input.match !== null && { match: serializeAws_restJson1QueryParameterMatch(input.match, context) }),
-        ...(input.name !== undefined && input.name !== null && { name: input.name }),
+        ...(input.match != null && { match: serializeAws_restJson1QueryParameterMatch(input.match, context) }),
+        ...(input.name != null && { name: input.name }),
     };
 };
 const serializeAws_restJson1HttpQueryParameters = (input, context) => {
@@ -11221,17 +11258,14 @@ const serializeAws_restJson1HttpQueryParameters = (input, context) => {
 };
 const serializeAws_restJson1HttpRetryPolicy = (input, context) => {
     return {
-        ...(input.httpRetryEvents !== undefined &&
-            input.httpRetryEvents !== null && {
+        ...(input.httpRetryEvents != null && {
             httpRetryEvents: serializeAws_restJson1HttpRetryPolicyEvents(input.httpRetryEvents, context),
         }),
-        ...(input.maxRetries !== undefined && input.maxRetries !== null && { maxRetries: input.maxRetries }),
-        ...(input.perRetryTimeout !== undefined &&
-            input.perRetryTimeout !== null && {
+        ...(input.maxRetries != null && { maxRetries: input.maxRetries }),
+        ...(input.perRetryTimeout != null && {
             perRetryTimeout: serializeAws_restJson1Duration(input.perRetryTimeout, context),
         }),
-        ...(input.tcpRetryEvents !== undefined &&
-            input.tcpRetryEvents !== null && {
+        ...(input.tcpRetryEvents != null && {
             tcpRetryEvents: serializeAws_restJson1TcpRetryPolicyEvents(input.tcpRetryEvents, context),
         }),
     };
@@ -11248,30 +11282,26 @@ const serializeAws_restJson1HttpRetryPolicyEvents = (input, context) => {
 };
 const serializeAws_restJson1HttpRoute = (input, context) => {
     return {
-        ...(input.action !== undefined &&
-            input.action !== null && { action: serializeAws_restJson1HttpRouteAction(input.action, context) }),
-        ...(input.match !== undefined &&
-            input.match !== null && { match: serializeAws_restJson1HttpRouteMatch(input.match, context) }),
-        ...(input.retryPolicy !== undefined &&
-            input.retryPolicy !== null && { retryPolicy: serializeAws_restJson1HttpRetryPolicy(input.retryPolicy, context) }),
-        ...(input.timeout !== undefined &&
-            input.timeout !== null && { timeout: serializeAws_restJson1HttpTimeout(input.timeout, context) }),
+        ...(input.action != null && { action: serializeAws_restJson1HttpRouteAction(input.action, context) }),
+        ...(input.match != null && { match: serializeAws_restJson1HttpRouteMatch(input.match, context) }),
+        ...(input.retryPolicy != null && {
+            retryPolicy: serializeAws_restJson1HttpRetryPolicy(input.retryPolicy, context),
+        }),
+        ...(input.timeout != null && { timeout: serializeAws_restJson1HttpTimeout(input.timeout, context) }),
     };
 };
 const serializeAws_restJson1HttpRouteAction = (input, context) => {
     return {
-        ...(input.weightedTargets !== undefined &&
-            input.weightedTargets !== null && {
+        ...(input.weightedTargets != null && {
             weightedTargets: serializeAws_restJson1WeightedTargets(input.weightedTargets, context),
         }),
     };
 };
 const serializeAws_restJson1HttpRouteHeader = (input, context) => {
     return {
-        ...(input.invert !== undefined && input.invert !== null && { invert: input.invert }),
-        ...(input.match !== undefined &&
-            input.match !== null && { match: serializeAws_restJson1HeaderMatchMethod(input.match, context) }),
-        ...(input.name !== undefined && input.name !== null && { name: input.name }),
+        ...(input.invert != null && { invert: input.invert }),
+        ...(input.match != null && { match: serializeAws_restJson1HeaderMatchMethod(input.match, context) }),
+        ...(input.name != null && { name: input.name }),
     };
 };
 const serializeAws_restJson1HttpRouteHeaders = (input, context) => {
@@ -11286,47 +11316,36 @@ const serializeAws_restJson1HttpRouteHeaders = (input, context) => {
 };
 const serializeAws_restJson1HttpRouteMatch = (input, context) => {
     return {
-        ...(input.headers !== undefined &&
-            input.headers !== null && { headers: serializeAws_restJson1HttpRouteHeaders(input.headers, context) }),
-        ...(input.method !== undefined && input.method !== null && { method: input.method }),
-        ...(input.path !== undefined &&
-            input.path !== null && { path: serializeAws_restJson1HttpPathMatch(input.path, context) }),
-        ...(input.prefix !== undefined && input.prefix !== null && { prefix: input.prefix }),
-        ...(input.queryParameters !== undefined &&
-            input.queryParameters !== null && {
+        ...(input.headers != null && { headers: serializeAws_restJson1HttpRouteHeaders(input.headers, context) }),
+        ...(input.method != null && { method: input.method }),
+        ...(input.path != null && { path: serializeAws_restJson1HttpPathMatch(input.path, context) }),
+        ...(input.prefix != null && { prefix: input.prefix }),
+        ...(input.queryParameters != null && {
             queryParameters: serializeAws_restJson1HttpQueryParameters(input.queryParameters, context),
         }),
-        ...(input.scheme !== undefined && input.scheme !== null && { scheme: input.scheme }),
+        ...(input.scheme != null && { scheme: input.scheme }),
     };
 };
 const serializeAws_restJson1HttpTimeout = (input, context) => {
     return {
-        ...(input.idle !== undefined &&
-            input.idle !== null && { idle: serializeAws_restJson1Duration(input.idle, context) }),
-        ...(input.perRequest !== undefined &&
-            input.perRequest !== null && { perRequest: serializeAws_restJson1Duration(input.perRequest, context) }),
+        ...(input.idle != null && { idle: serializeAws_restJson1Duration(input.idle, context) }),
+        ...(input.perRequest != null && { perRequest: serializeAws_restJson1Duration(input.perRequest, context) }),
     };
 };
 const serializeAws_restJson1Listener = (input, context) => {
     return {
-        ...(input.connectionPool !== undefined &&
-            input.connectionPool !== null && {
+        ...(input.connectionPool != null && {
             connectionPool: serializeAws_restJson1VirtualNodeConnectionPool(input.connectionPool, context),
         }),
-        ...(input.healthCheck !== undefined &&
-            input.healthCheck !== null && {
+        ...(input.healthCheck != null && {
             healthCheck: serializeAws_restJson1HealthCheckPolicy(input.healthCheck, context),
         }),
-        ...(input.outlierDetection !== undefined &&
-            input.outlierDetection !== null && {
+        ...(input.outlierDetection != null && {
             outlierDetection: serializeAws_restJson1OutlierDetection(input.outlierDetection, context),
         }),
-        ...(input.portMapping !== undefined &&
-            input.portMapping !== null && { portMapping: serializeAws_restJson1PortMapping(input.portMapping, context) }),
-        ...(input.timeout !== undefined &&
-            input.timeout !== null && { timeout: serializeAws_restJson1ListenerTimeout(input.timeout, context) }),
-        ...(input.tls !== undefined &&
-            input.tls !== null && { tls: serializeAws_restJson1ListenerTls(input.tls, context) }),
+        ...(input.portMapping != null && { portMapping: serializeAws_restJson1PortMapping(input.portMapping, context) }),
+        ...(input.timeout != null && { timeout: serializeAws_restJson1ListenerTimeout(input.timeout, context) }),
+        ...(input.tls != null && { tls: serializeAws_restJson1ListenerTls(input.tls, context) }),
     };
 };
 const serializeAws_restJson1Listeners = (input, context) => {
@@ -11350,21 +11369,18 @@ const serializeAws_restJson1ListenerTimeout = (input, context) => {
 };
 const serializeAws_restJson1ListenerTls = (input, context) => {
     return {
-        ...(input.certificate !== undefined &&
-            input.certificate !== null && {
+        ...(input.certificate != null && {
             certificate: serializeAws_restJson1ListenerTlsCertificate(input.certificate, context),
         }),
-        ...(input.mode !== undefined && input.mode !== null && { mode: input.mode }),
-        ...(input.validation !== undefined &&
-            input.validation !== null && {
+        ...(input.mode != null && { mode: input.mode }),
+        ...(input.validation != null && {
             validation: serializeAws_restJson1ListenerTlsValidationContext(input.validation, context),
         }),
     };
 };
 const serializeAws_restJson1ListenerTlsAcmCertificate = (input, context) => {
     return {
-        ...(input.certificateArn !== undefined &&
-            input.certificateArn !== null && { certificateArn: input.certificateArn }),
+        ...(input.certificateArn != null && { certificateArn: input.certificateArn }),
     };
 };
 const serializeAws_restJson1ListenerTlsCertificate = (input, context) => {
@@ -11377,24 +11393,23 @@ const serializeAws_restJson1ListenerTlsCertificate = (input, context) => {
 };
 const serializeAws_restJson1ListenerTlsFileCertificate = (input, context) => {
     return {
-        ...(input.certificateChain !== undefined &&
-            input.certificateChain !== null && { certificateChain: input.certificateChain }),
-        ...(input.privateKey !== undefined && input.privateKey !== null && { privateKey: input.privateKey }),
+        ...(input.certificateChain != null && { certificateChain: input.certificateChain }),
+        ...(input.privateKey != null && { privateKey: input.privateKey }),
     };
 };
 const serializeAws_restJson1ListenerTlsSdsCertificate = (input, context) => {
     return {
-        ...(input.secretName !== undefined && input.secretName !== null && { secretName: input.secretName }),
+        ...(input.secretName != null && { secretName: input.secretName }),
     };
 };
 const serializeAws_restJson1ListenerTlsValidationContext = (input, context) => {
     return {
-        ...(input.subjectAlternativeNames !== undefined &&
-            input.subjectAlternativeNames !== null && {
+        ...(input.subjectAlternativeNames != null && {
             subjectAlternativeNames: serializeAws_restJson1SubjectAlternativeNames(input.subjectAlternativeNames, context),
         }),
-        ...(input.trust !== undefined &&
-            input.trust !== null && { trust: serializeAws_restJson1ListenerTlsValidationContextTrust(input.trust, context) }),
+        ...(input.trust != null && {
+            trust: serializeAws_restJson1ListenerTlsValidationContextTrust(input.trust, context),
+        }),
     };
 };
 const serializeAws_restJson1ListenerTlsValidationContextTrust = (input, context) => {
@@ -11406,49 +11421,44 @@ const serializeAws_restJson1ListenerTlsValidationContextTrust = (input, context)
 };
 const serializeAws_restJson1Logging = (input, context) => {
     return {
-        ...(input.accessLog !== undefined &&
-            input.accessLog !== null && { accessLog: serializeAws_restJson1AccessLog(input.accessLog, context) }),
+        ...(input.accessLog != null && { accessLog: serializeAws_restJson1AccessLog(input.accessLog, context) }),
     };
 };
 const serializeAws_restJson1MatchRange = (input, context) => {
     return {
-        ...(input.end !== undefined && input.end !== null && { end: input.end }),
-        ...(input.start !== undefined && input.start !== null && { start: input.start }),
+        ...(input.end != null && { end: input.end }),
+        ...(input.start != null && { start: input.start }),
     };
 };
 const serializeAws_restJson1MeshServiceDiscovery = (input, context) => {
     return {
-        ...(input.ipPreference !== undefined && input.ipPreference !== null && { ipPreference: input.ipPreference }),
+        ...(input.ipPreference != null && { ipPreference: input.ipPreference }),
     };
 };
 const serializeAws_restJson1MeshSpec = (input, context) => {
     return {
-        ...(input.egressFilter !== undefined &&
-            input.egressFilter !== null && { egressFilter: serializeAws_restJson1EgressFilter(input.egressFilter, context) }),
-        ...(input.serviceDiscovery !== undefined &&
-            input.serviceDiscovery !== null && {
+        ...(input.egressFilter != null && {
+            egressFilter: serializeAws_restJson1EgressFilter(input.egressFilter, context),
+        }),
+        ...(input.serviceDiscovery != null && {
             serviceDiscovery: serializeAws_restJson1MeshServiceDiscovery(input.serviceDiscovery, context),
         }),
     };
 };
 const serializeAws_restJson1OutlierDetection = (input, context) => {
     return {
-        ...(input.baseEjectionDuration !== undefined &&
-            input.baseEjectionDuration !== null && {
+        ...(input.baseEjectionDuration != null && {
             baseEjectionDuration: serializeAws_restJson1Duration(input.baseEjectionDuration, context),
         }),
-        ...(input.interval !== undefined &&
-            input.interval !== null && { interval: serializeAws_restJson1Duration(input.interval, context) }),
-        ...(input.maxEjectionPercent !== undefined &&
-            input.maxEjectionPercent !== null && { maxEjectionPercent: input.maxEjectionPercent }),
-        ...(input.maxServerErrors !== undefined &&
-            input.maxServerErrors !== null && { maxServerErrors: input.maxServerErrors }),
+        ...(input.interval != null && { interval: serializeAws_restJson1Duration(input.interval, context) }),
+        ...(input.maxEjectionPercent != null && { maxEjectionPercent: input.maxEjectionPercent }),
+        ...(input.maxServerErrors != null && { maxServerErrors: input.maxServerErrors }),
     };
 };
 const serializeAws_restJson1PortMapping = (input, context) => {
     return {
-        ...(input.port !== undefined && input.port !== null && { port: input.port }),
-        ...(input.protocol !== undefined && input.protocol !== null && { protocol: input.protocol }),
+        ...(input.port != null && { port: input.port }),
+        ...(input.protocol != null && { protocol: input.protocol }),
     };
 };
 const serializeAws_restJson1PortSet = (input, context) => {
@@ -11463,20 +11473,16 @@ const serializeAws_restJson1PortSet = (input, context) => {
 };
 const serializeAws_restJson1QueryParameterMatch = (input, context) => {
     return {
-        ...(input.exact !== undefined && input.exact !== null && { exact: input.exact }),
+        ...(input.exact != null && { exact: input.exact }),
     };
 };
 const serializeAws_restJson1RouteSpec = (input, context) => {
     return {
-        ...(input.grpcRoute !== undefined &&
-            input.grpcRoute !== null && { grpcRoute: serializeAws_restJson1GrpcRoute(input.grpcRoute, context) }),
-        ...(input.http2Route !== undefined &&
-            input.http2Route !== null && { http2Route: serializeAws_restJson1HttpRoute(input.http2Route, context) }),
-        ...(input.httpRoute !== undefined &&
-            input.httpRoute !== null && { httpRoute: serializeAws_restJson1HttpRoute(input.httpRoute, context) }),
-        ...(input.priority !== undefined && input.priority !== null && { priority: input.priority }),
-        ...(input.tcpRoute !== undefined &&
-            input.tcpRoute !== null && { tcpRoute: serializeAws_restJson1TcpRoute(input.tcpRoute, context) }),
+        ...(input.grpcRoute != null && { grpcRoute: serializeAws_restJson1GrpcRoute(input.grpcRoute, context) }),
+        ...(input.http2Route != null && { http2Route: serializeAws_restJson1HttpRoute(input.http2Route, context) }),
+        ...(input.httpRoute != null && { httpRoute: serializeAws_restJson1HttpRoute(input.httpRoute, context) }),
+        ...(input.priority != null && { priority: input.priority }),
+        ...(input.tcpRoute != null && { tcpRoute: serializeAws_restJson1TcpRoute(input.tcpRoute, context) }),
     };
 };
 const serializeAws_restJson1ServiceDiscovery = (input, context) => {
@@ -11498,14 +11504,12 @@ const serializeAws_restJson1SubjectAlternativeNameList = (input, context) => {
 };
 const serializeAws_restJson1SubjectAlternativeNameMatchers = (input, context) => {
     return {
-        ...(input.exact !== undefined &&
-            input.exact !== null && { exact: serializeAws_restJson1SubjectAlternativeNameList(input.exact, context) }),
+        ...(input.exact != null && { exact: serializeAws_restJson1SubjectAlternativeNameList(input.exact, context) }),
     };
 };
 const serializeAws_restJson1SubjectAlternativeNames = (input, context) => {
     return {
-        ...(input.match !== undefined &&
-            input.match !== null && { match: serializeAws_restJson1SubjectAlternativeNameMatchers(input.match, context) }),
+        ...(input.match != null && { match: serializeAws_restJson1SubjectAlternativeNameMatchers(input.match, context) }),
     };
 };
 const serializeAws_restJson1TagKeyList = (input, context) => {
@@ -11530,8 +11534,8 @@ const serializeAws_restJson1TagList = (input, context) => {
 };
 const serializeAws_restJson1TagRef = (input, context) => {
     return {
-        ...(input.key !== undefined && input.key !== null && { key: input.key }),
-        ...(input.value !== undefined && input.value !== null && { value: input.value }),
+        ...(input.key != null && { key: input.key }),
+        ...(input.value != null && { value: input.value }),
     };
 };
 const serializeAws_restJson1TcpRetryPolicyEvents = (input, context) => {
@@ -11546,53 +11550,45 @@ const serializeAws_restJson1TcpRetryPolicyEvents = (input, context) => {
 };
 const serializeAws_restJson1TcpRoute = (input, context) => {
     return {
-        ...(input.action !== undefined &&
-            input.action !== null && { action: serializeAws_restJson1TcpRouteAction(input.action, context) }),
-        ...(input.timeout !== undefined &&
-            input.timeout !== null && { timeout: serializeAws_restJson1TcpTimeout(input.timeout, context) }),
+        ...(input.action != null && { action: serializeAws_restJson1TcpRouteAction(input.action, context) }),
+        ...(input.timeout != null && { timeout: serializeAws_restJson1TcpTimeout(input.timeout, context) }),
     };
 };
 const serializeAws_restJson1TcpRouteAction = (input, context) => {
     return {
-        ...(input.weightedTargets !== undefined &&
-            input.weightedTargets !== null && {
+        ...(input.weightedTargets != null && {
             weightedTargets: serializeAws_restJson1WeightedTargets(input.weightedTargets, context),
         }),
     };
 };
 const serializeAws_restJson1TcpTimeout = (input, context) => {
     return {
-        ...(input.idle !== undefined &&
-            input.idle !== null && { idle: serializeAws_restJson1Duration(input.idle, context) }),
+        ...(input.idle != null && { idle: serializeAws_restJson1Duration(input.idle, context) }),
     };
 };
 const serializeAws_restJson1TlsValidationContext = (input, context) => {
     return {
-        ...(input.subjectAlternativeNames !== undefined &&
-            input.subjectAlternativeNames !== null && {
+        ...(input.subjectAlternativeNames != null && {
             subjectAlternativeNames: serializeAws_restJson1SubjectAlternativeNames(input.subjectAlternativeNames, context),
         }),
-        ...(input.trust !== undefined &&
-            input.trust !== null && { trust: serializeAws_restJson1TlsValidationContextTrust(input.trust, context) }),
+        ...(input.trust != null && { trust: serializeAws_restJson1TlsValidationContextTrust(input.trust, context) }),
     };
 };
 const serializeAws_restJson1TlsValidationContextAcmTrust = (input, context) => {
     return {
-        ...(input.certificateAuthorityArns !== undefined &&
-            input.certificateAuthorityArns !== null && {
+        ...(input.certificateAuthorityArns != null && {
             certificateAuthorityArns: serializeAws_restJson1CertificateAuthorityArns(input.certificateAuthorityArns, context),
         }),
     };
 };
 const serializeAws_restJson1TlsValidationContextFileTrust = (input, context) => {
     return {
-        ...(input.certificateChain !== undefined &&
-            input.certificateChain !== null && { certificateChain: input.certificateChain }),
+        ...(input.certificateChain != null && { certificateChain: input.certificateChain }),
     };
 };
 const serializeAws_restJson1TlsValidationContextSdsTrust = (input, context) => {
     return {
-        ...(input.secretName !== undefined && input.secretName !== null && { secretName: input.secretName }),
+        ...(input.secretName != null && { secretName: input.secretName }),
     };
 };
 const serializeAws_restJson1TlsValidationContextTrust = (input, context) => {
@@ -11611,8 +11607,7 @@ const serializeAws_restJson1VirtualGatewayAccessLog = (input, context) => {
 };
 const serializeAws_restJson1VirtualGatewayBackendDefaults = (input, context) => {
     return {
-        ...(input.clientPolicy !== undefined &&
-            input.clientPolicy !== null && {
+        ...(input.clientPolicy != null && {
             clientPolicy: serializeAws_restJson1VirtualGatewayClientPolicy(input.clientPolicy, context),
         }),
     };
@@ -11629,21 +11624,17 @@ const serializeAws_restJson1VirtualGatewayCertificateAuthorityArns = (input, con
 };
 const serializeAws_restJson1VirtualGatewayClientPolicy = (input, context) => {
     return {
-        ...(input.tls !== undefined &&
-            input.tls !== null && { tls: serializeAws_restJson1VirtualGatewayClientPolicyTls(input.tls, context) }),
+        ...(input.tls != null && { tls: serializeAws_restJson1VirtualGatewayClientPolicyTls(input.tls, context) }),
     };
 };
 const serializeAws_restJson1VirtualGatewayClientPolicyTls = (input, context) => {
     return {
-        ...(input.certificate !== undefined &&
-            input.certificate !== null && {
+        ...(input.certificate != null && {
             certificate: serializeAws_restJson1VirtualGatewayClientTlsCertificate(input.certificate, context),
         }),
-        ...(input.enforce !== undefined && input.enforce !== null && { enforce: input.enforce }),
-        ...(input.ports !== undefined &&
-            input.ports !== null && { ports: serializeAws_restJson1PortSet(input.ports, context) }),
-        ...(input.validation !== undefined &&
-            input.validation !== null && {
+        ...(input.enforce != null && { enforce: input.enforce }),
+        ...(input.ports != null && { ports: serializeAws_restJson1PortSet(input.ports, context) }),
+        ...(input.validation != null && {
             validation: serializeAws_restJson1VirtualGatewayTlsValidationContext(input.validation, context),
         }),
     };
@@ -11665,57 +11656,48 @@ const serializeAws_restJson1VirtualGatewayConnectionPool = (input, context) => {
 };
 const serializeAws_restJson1VirtualGatewayFileAccessLog = (input, context) => {
     return {
-        ...(input.path !== undefined && input.path !== null && { path: input.path }),
+        ...(input.path != null && { path: input.path }),
     };
 };
 const serializeAws_restJson1VirtualGatewayGrpcConnectionPool = (input, context) => {
     return {
-        ...(input.maxRequests !== undefined && input.maxRequests !== null && { maxRequests: input.maxRequests }),
+        ...(input.maxRequests != null && { maxRequests: input.maxRequests }),
     };
 };
 const serializeAws_restJson1VirtualGatewayHealthCheckPolicy = (input, context) => {
     return {
-        ...(input.healthyThreshold !== undefined &&
-            input.healthyThreshold !== null && { healthyThreshold: input.healthyThreshold }),
-        ...(input.intervalMillis !== undefined &&
-            input.intervalMillis !== null && { intervalMillis: input.intervalMillis }),
-        ...(input.path !== undefined && input.path !== null && { path: input.path }),
-        ...(input.port !== undefined && input.port !== null && { port: input.port }),
-        ...(input.protocol !== undefined && input.protocol !== null && { protocol: input.protocol }),
-        ...(input.timeoutMillis !== undefined && input.timeoutMillis !== null && { timeoutMillis: input.timeoutMillis }),
-        ...(input.unhealthyThreshold !== undefined &&
-            input.unhealthyThreshold !== null && { unhealthyThreshold: input.unhealthyThreshold }),
+        ...(input.healthyThreshold != null && { healthyThreshold: input.healthyThreshold }),
+        ...(input.intervalMillis != null && { intervalMillis: input.intervalMillis }),
+        ...(input.path != null && { path: input.path }),
+        ...(input.port != null && { port: input.port }),
+        ...(input.protocol != null && { protocol: input.protocol }),
+        ...(input.timeoutMillis != null && { timeoutMillis: input.timeoutMillis }),
+        ...(input.unhealthyThreshold != null && { unhealthyThreshold: input.unhealthyThreshold }),
     };
 };
 const serializeAws_restJson1VirtualGatewayHttp2ConnectionPool = (input, context) => {
     return {
-        ...(input.maxRequests !== undefined && input.maxRequests !== null && { maxRequests: input.maxRequests }),
+        ...(input.maxRequests != null && { maxRequests: input.maxRequests }),
     };
 };
 const serializeAws_restJson1VirtualGatewayHttpConnectionPool = (input, context) => {
     return {
-        ...(input.maxConnections !== undefined &&
-            input.maxConnections !== null && { maxConnections: input.maxConnections }),
-        ...(input.maxPendingRequests !== undefined &&
-            input.maxPendingRequests !== null && { maxPendingRequests: input.maxPendingRequests }),
+        ...(input.maxConnections != null && { maxConnections: input.maxConnections }),
+        ...(input.maxPendingRequests != null && { maxPendingRequests: input.maxPendingRequests }),
     };
 };
 const serializeAws_restJson1VirtualGatewayListener = (input, context) => {
     return {
-        ...(input.connectionPool !== undefined &&
-            input.connectionPool !== null && {
+        ...(input.connectionPool != null && {
             connectionPool: serializeAws_restJson1VirtualGatewayConnectionPool(input.connectionPool, context),
         }),
-        ...(input.healthCheck !== undefined &&
-            input.healthCheck !== null && {
+        ...(input.healthCheck != null && {
             healthCheck: serializeAws_restJson1VirtualGatewayHealthCheckPolicy(input.healthCheck, context),
         }),
-        ...(input.portMapping !== undefined &&
-            input.portMapping !== null && {
+        ...(input.portMapping != null && {
             portMapping: serializeAws_restJson1VirtualGatewayPortMapping(input.portMapping, context),
         }),
-        ...(input.tls !== undefined &&
-            input.tls !== null && { tls: serializeAws_restJson1VirtualGatewayListenerTls(input.tls, context) }),
+        ...(input.tls != null && { tls: serializeAws_restJson1VirtualGatewayListenerTls(input.tls, context) }),
     };
 };
 const serializeAws_restJson1VirtualGatewayListeners = (input, context) => {
@@ -11730,21 +11712,18 @@ const serializeAws_restJson1VirtualGatewayListeners = (input, context) => {
 };
 const serializeAws_restJson1VirtualGatewayListenerTls = (input, context) => {
     return {
-        ...(input.certificate !== undefined &&
-            input.certificate !== null && {
+        ...(input.certificate != null && {
             certificate: serializeAws_restJson1VirtualGatewayListenerTlsCertificate(input.certificate, context),
         }),
-        ...(input.mode !== undefined && input.mode !== null && { mode: input.mode }),
-        ...(input.validation !== undefined &&
-            input.validation !== null && {
+        ...(input.mode != null && { mode: input.mode }),
+        ...(input.validation != null && {
             validation: serializeAws_restJson1VirtualGatewayListenerTlsValidationContext(input.validation, context),
         }),
     };
 };
 const serializeAws_restJson1VirtualGatewayListenerTlsAcmCertificate = (input, context) => {
     return {
-        ...(input.certificateArn !== undefined &&
-            input.certificateArn !== null && { certificateArn: input.certificateArn }),
+        ...(input.certificateArn != null && { certificateArn: input.certificateArn }),
     };
 };
 const serializeAws_restJson1VirtualGatewayListenerTlsCertificate = (input, context) => {
@@ -11757,24 +11736,21 @@ const serializeAws_restJson1VirtualGatewayListenerTlsCertificate = (input, conte
 };
 const serializeAws_restJson1VirtualGatewayListenerTlsFileCertificate = (input, context) => {
     return {
-        ...(input.certificateChain !== undefined &&
-            input.certificateChain !== null && { certificateChain: input.certificateChain }),
-        ...(input.privateKey !== undefined && input.privateKey !== null && { privateKey: input.privateKey }),
+        ...(input.certificateChain != null && { certificateChain: input.certificateChain }),
+        ...(input.privateKey != null && { privateKey: input.privateKey }),
     };
 };
 const serializeAws_restJson1VirtualGatewayListenerTlsSdsCertificate = (input, context) => {
     return {
-        ...(input.secretName !== undefined && input.secretName !== null && { secretName: input.secretName }),
+        ...(input.secretName != null && { secretName: input.secretName }),
     };
 };
 const serializeAws_restJson1VirtualGatewayListenerTlsValidationContext = (input, context) => {
     return {
-        ...(input.subjectAlternativeNames !== undefined &&
-            input.subjectAlternativeNames !== null && {
+        ...(input.subjectAlternativeNames != null && {
             subjectAlternativeNames: serializeAws_restJson1SubjectAlternativeNames(input.subjectAlternativeNames, context),
         }),
-        ...(input.trust !== undefined &&
-            input.trust !== null && {
+        ...(input.trust != null && {
             trust: serializeAws_restJson1VirtualGatewayListenerTlsValidationContextTrust(input.trust, context),
         }),
     };
@@ -11788,61 +11764,53 @@ const serializeAws_restJson1VirtualGatewayListenerTlsValidationContextTrust = (i
 };
 const serializeAws_restJson1VirtualGatewayLogging = (input, context) => {
     return {
-        ...(input.accessLog !== undefined &&
-            input.accessLog !== null && {
+        ...(input.accessLog != null && {
             accessLog: serializeAws_restJson1VirtualGatewayAccessLog(input.accessLog, context),
         }),
     };
 };
 const serializeAws_restJson1VirtualGatewayPortMapping = (input, context) => {
     return {
-        ...(input.port !== undefined && input.port !== null && { port: input.port }),
-        ...(input.protocol !== undefined && input.protocol !== null && { protocol: input.protocol }),
+        ...(input.port != null && { port: input.port }),
+        ...(input.protocol != null && { protocol: input.protocol }),
     };
 };
 const serializeAws_restJson1VirtualGatewaySpec = (input, context) => {
     return {
-        ...(input.backendDefaults !== undefined &&
-            input.backendDefaults !== null && {
+        ...(input.backendDefaults != null && {
             backendDefaults: serializeAws_restJson1VirtualGatewayBackendDefaults(input.backendDefaults, context),
         }),
-        ...(input.listeners !== undefined &&
-            input.listeners !== null && {
+        ...(input.listeners != null && {
             listeners: serializeAws_restJson1VirtualGatewayListeners(input.listeners, context),
         }),
-        ...(input.logging !== undefined &&
-            input.logging !== null && { logging: serializeAws_restJson1VirtualGatewayLogging(input.logging, context) }),
+        ...(input.logging != null && { logging: serializeAws_restJson1VirtualGatewayLogging(input.logging, context) }),
     };
 };
 const serializeAws_restJson1VirtualGatewayTlsValidationContext = (input, context) => {
     return {
-        ...(input.subjectAlternativeNames !== undefined &&
-            input.subjectAlternativeNames !== null && {
+        ...(input.subjectAlternativeNames != null && {
             subjectAlternativeNames: serializeAws_restJson1SubjectAlternativeNames(input.subjectAlternativeNames, context),
         }),
-        ...(input.trust !== undefined &&
-            input.trust !== null && {
+        ...(input.trust != null && {
             trust: serializeAws_restJson1VirtualGatewayTlsValidationContextTrust(input.trust, context),
         }),
     };
 };
 const serializeAws_restJson1VirtualGatewayTlsValidationContextAcmTrust = (input, context) => {
     return {
-        ...(input.certificateAuthorityArns !== undefined &&
-            input.certificateAuthorityArns !== null && {
+        ...(input.certificateAuthorityArns != null && {
             certificateAuthorityArns: serializeAws_restJson1VirtualGatewayCertificateAuthorityArns(input.certificateAuthorityArns, context),
         }),
     };
 };
 const serializeAws_restJson1VirtualGatewayTlsValidationContextFileTrust = (input, context) => {
     return {
-        ...(input.certificateChain !== undefined &&
-            input.certificateChain !== null && { certificateChain: input.certificateChain }),
+        ...(input.certificateChain != null && { certificateChain: input.certificateChain }),
     };
 };
 const serializeAws_restJson1VirtualGatewayTlsValidationContextSdsTrust = (input, context) => {
     return {
-        ...(input.secretName !== undefined && input.secretName !== null && { secretName: input.secretName }),
+        ...(input.secretName != null && { secretName: input.secretName }),
     };
 };
 const serializeAws_restJson1VirtualGatewayTlsValidationContextTrust = (input, context) => {
@@ -11864,56 +11832,46 @@ const serializeAws_restJson1VirtualNodeConnectionPool = (input, context) => {
 };
 const serializeAws_restJson1VirtualNodeGrpcConnectionPool = (input, context) => {
     return {
-        ...(input.maxRequests !== undefined && input.maxRequests !== null && { maxRequests: input.maxRequests }),
+        ...(input.maxRequests != null && { maxRequests: input.maxRequests }),
     };
 };
 const serializeAws_restJson1VirtualNodeHttp2ConnectionPool = (input, context) => {
     return {
-        ...(input.maxRequests !== undefined && input.maxRequests !== null && { maxRequests: input.maxRequests }),
+        ...(input.maxRequests != null && { maxRequests: input.maxRequests }),
     };
 };
 const serializeAws_restJson1VirtualNodeHttpConnectionPool = (input, context) => {
     return {
-        ...(input.maxConnections !== undefined &&
-            input.maxConnections !== null && { maxConnections: input.maxConnections }),
-        ...(input.maxPendingRequests !== undefined &&
-            input.maxPendingRequests !== null && { maxPendingRequests: input.maxPendingRequests }),
+        ...(input.maxConnections != null && { maxConnections: input.maxConnections }),
+        ...(input.maxPendingRequests != null && { maxPendingRequests: input.maxPendingRequests }),
     };
 };
 const serializeAws_restJson1VirtualNodeServiceProvider = (input, context) => {
     return {
-        ...(input.virtualNodeName !== undefined &&
-            input.virtualNodeName !== null && { virtualNodeName: input.virtualNodeName }),
+        ...(input.virtualNodeName != null && { virtualNodeName: input.virtualNodeName }),
     };
 };
 const serializeAws_restJson1VirtualNodeSpec = (input, context) => {
     return {
-        ...(input.backendDefaults !== undefined &&
-            input.backendDefaults !== null && {
+        ...(input.backendDefaults != null && {
             backendDefaults: serializeAws_restJson1BackendDefaults(input.backendDefaults, context),
         }),
-        ...(input.backends !== undefined &&
-            input.backends !== null && { backends: serializeAws_restJson1Backends(input.backends, context) }),
-        ...(input.listeners !== undefined &&
-            input.listeners !== null && { listeners: serializeAws_restJson1Listeners(input.listeners, context) }),
-        ...(input.logging !== undefined &&
-            input.logging !== null && { logging: serializeAws_restJson1Logging(input.logging, context) }),
-        ...(input.serviceDiscovery !== undefined &&
-            input.serviceDiscovery !== null && {
+        ...(input.backends != null && { backends: serializeAws_restJson1Backends(input.backends, context) }),
+        ...(input.listeners != null && { listeners: serializeAws_restJson1Listeners(input.listeners, context) }),
+        ...(input.logging != null && { logging: serializeAws_restJson1Logging(input.logging, context) }),
+        ...(input.serviceDiscovery != null && {
             serviceDiscovery: serializeAws_restJson1ServiceDiscovery(input.serviceDiscovery, context),
         }),
     };
 };
 const serializeAws_restJson1VirtualNodeTcpConnectionPool = (input, context) => {
     return {
-        ...(input.maxConnections !== undefined &&
-            input.maxConnections !== null && { maxConnections: input.maxConnections }),
+        ...(input.maxConnections != null && { maxConnections: input.maxConnections }),
     };
 };
 const serializeAws_restJson1VirtualRouterListener = (input, context) => {
     return {
-        ...(input.portMapping !== undefined &&
-            input.portMapping !== null && { portMapping: serializeAws_restJson1PortMapping(input.portMapping, context) }),
+        ...(input.portMapping != null && { portMapping: serializeAws_restJson1PortMapping(input.portMapping, context) }),
     };
 };
 const serializeAws_restJson1VirtualRouterListeners = (input, context) => {
@@ -11928,24 +11886,22 @@ const serializeAws_restJson1VirtualRouterListeners = (input, context) => {
 };
 const serializeAws_restJson1VirtualRouterServiceProvider = (input, context) => {
     return {
-        ...(input.virtualRouterName !== undefined &&
-            input.virtualRouterName !== null && { virtualRouterName: input.virtualRouterName }),
+        ...(input.virtualRouterName != null && { virtualRouterName: input.virtualRouterName }),
     };
 };
 const serializeAws_restJson1VirtualRouterSpec = (input, context) => {
     return {
-        ...(input.listeners !== undefined &&
-            input.listeners !== null && {
+        ...(input.listeners != null && {
             listeners: serializeAws_restJson1VirtualRouterListeners(input.listeners, context),
         }),
     };
 };
 const serializeAws_restJson1VirtualServiceBackend = (input, context) => {
     return {
-        ...(input.clientPolicy !== undefined &&
-            input.clientPolicy !== null && { clientPolicy: serializeAws_restJson1ClientPolicy(input.clientPolicy, context) }),
-        ...(input.virtualServiceName !== undefined &&
-            input.virtualServiceName !== null && { virtualServiceName: input.virtualServiceName }),
+        ...(input.clientPolicy != null && {
+            clientPolicy: serializeAws_restJson1ClientPolicy(input.clientPolicy, context),
+        }),
+        ...(input.virtualServiceName != null && { virtualServiceName: input.virtualServiceName }),
     };
 };
 const serializeAws_restJson1VirtualServiceProvider = (input, context) => {
@@ -11957,14 +11913,13 @@ const serializeAws_restJson1VirtualServiceProvider = (input, context) => {
 };
 const serializeAws_restJson1VirtualServiceSpec = (input, context) => {
     return {
-        ...(input.provider !== undefined &&
-            input.provider !== null && { provider: serializeAws_restJson1VirtualServiceProvider(input.provider, context) }),
+        ...(input.provider != null && { provider: serializeAws_restJson1VirtualServiceProvider(input.provider, context) }),
     };
 };
 const serializeAws_restJson1WeightedTarget = (input, context) => {
     return {
-        ...(input.virtualNode !== undefined && input.virtualNode !== null && { virtualNode: input.virtualNode }),
-        ...(input.weight !== undefined && input.weight !== null && { weight: input.weight }),
+        ...(input.virtualNode != null && { virtualNode: input.virtualNode }),
+        ...(input.weight != null && { weight: input.weight }),
     };
 };
 const serializeAws_restJson1WeightedTargets = (input, context) => {
@@ -12004,7 +11959,7 @@ const deserializeAws_restJson1AwsCloudMapInstanceAttributes = (output, context) 
 };
 const deserializeAws_restJson1AwsCloudMapServiceDiscovery = (output, context) => {
     return {
-        attributes: output.attributes !== undefined && output.attributes !== null
+        attributes: output.attributes != null
             ? deserializeAws_restJson1AwsCloudMapInstanceAttributes(output.attributes, context)
             : undefined,
         ipPreference: (0, smithy_client_1.expectString)(output.ipPreference),
@@ -12022,9 +11977,7 @@ const deserializeAws_restJson1Backend = (output, context) => {
 };
 const deserializeAws_restJson1BackendDefaults = (output, context) => {
     return {
-        clientPolicy: output.clientPolicy !== undefined && output.clientPolicy !== null
-            ? deserializeAws_restJson1ClientPolicy(output.clientPolicy, context)
-            : undefined,
+        clientPolicy: output.clientPolicy != null ? deserializeAws_restJson1ClientPolicy(output.clientPolicy, context) : undefined,
     };
 };
 const deserializeAws_restJson1Backends = (output, context) => {
@@ -12051,23 +12004,17 @@ const deserializeAws_restJson1CertificateAuthorityArns = (output, context) => {
 };
 const deserializeAws_restJson1ClientPolicy = (output, context) => {
     return {
-        tls: output.tls !== undefined && output.tls !== null
-            ? deserializeAws_restJson1ClientPolicyTls(output.tls, context)
-            : undefined,
+        tls: output.tls != null ? deserializeAws_restJson1ClientPolicyTls(output.tls, context) : undefined,
     };
 };
 const deserializeAws_restJson1ClientPolicyTls = (output, context) => {
     return {
-        certificate: output.certificate !== undefined && output.certificate !== null
+        certificate: output.certificate != null
             ? deserializeAws_restJson1ClientTlsCertificate((0, smithy_client_1.expectUnion)(output.certificate), context)
             : undefined,
         enforce: (0, smithy_client_1.expectBoolean)(output.enforce),
-        ports: output.ports !== undefined && output.ports !== null
-            ? deserializeAws_restJson1PortSet(output.ports, context)
-            : undefined,
-        validation: output.validation !== undefined && output.validation !== null
-            ? deserializeAws_restJson1TlsValidationContext(output.validation, context)
-            : undefined,
+        ports: output.ports != null ? deserializeAws_restJson1PortSet(output.ports, context) : undefined,
+        validation: output.validation != null ? deserializeAws_restJson1TlsValidationContext(output.validation, context) : undefined,
     };
 };
 const deserializeAws_restJson1ClientTlsCertificate = (output, context) => {
@@ -12110,15 +12057,9 @@ const deserializeAws_restJson1GatewayRouteData = (output, context) => {
     return {
         gatewayRouteName: (0, smithy_client_1.expectString)(output.gatewayRouteName),
         meshName: (0, smithy_client_1.expectString)(output.meshName),
-        metadata: output.metadata !== undefined && output.metadata !== null
-            ? deserializeAws_restJson1ResourceMetadata(output.metadata, context)
-            : undefined,
-        spec: output.spec !== undefined && output.spec !== null
-            ? deserializeAws_restJson1GatewayRouteSpec(output.spec, context)
-            : undefined,
-        status: output.status !== undefined && output.status !== null
-            ? deserializeAws_restJson1GatewayRouteStatus(output.status, context)
-            : undefined,
+        metadata: output.metadata != null ? deserializeAws_restJson1ResourceMetadata(output.metadata, context) : undefined,
+        spec: output.spec != null ? deserializeAws_restJson1GatewayRouteSpec(output.spec, context) : undefined,
+        status: output.status != null ? deserializeAws_restJson1GatewayRouteStatus(output.status, context) : undefined,
         virtualGatewayName: (0, smithy_client_1.expectString)(output.virtualGatewayName),
     };
 };
@@ -12147,11 +12088,9 @@ const deserializeAws_restJson1GatewayRouteList = (output, context) => {
 const deserializeAws_restJson1GatewayRouteRef = (output, context) => {
     return {
         arn: (0, smithy_client_1.expectString)(output.arn),
-        createdAt: output.createdAt !== undefined && output.createdAt !== null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt)))
-            : undefined,
+        createdAt: output.createdAt != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt))) : undefined,
         gatewayRouteName: (0, smithy_client_1.expectString)(output.gatewayRouteName),
-        lastUpdatedAt: output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
+        lastUpdatedAt: output.lastUpdatedAt != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.lastUpdatedAt)))
             : undefined,
         meshName: (0, smithy_client_1.expectString)(output.meshName),
@@ -12163,15 +12102,9 @@ const deserializeAws_restJson1GatewayRouteRef = (output, context) => {
 };
 const deserializeAws_restJson1GatewayRouteSpec = (output, context) => {
     return {
-        grpcRoute: output.grpcRoute !== undefined && output.grpcRoute !== null
-            ? deserializeAws_restJson1GrpcGatewayRoute(output.grpcRoute, context)
-            : undefined,
-        http2Route: output.http2Route !== undefined && output.http2Route !== null
-            ? deserializeAws_restJson1HttpGatewayRoute(output.http2Route, context)
-            : undefined,
-        httpRoute: output.httpRoute !== undefined && output.httpRoute !== null
-            ? deserializeAws_restJson1HttpGatewayRoute(output.httpRoute, context)
-            : undefined,
+        grpcRoute: output.grpcRoute != null ? deserializeAws_restJson1GrpcGatewayRoute(output.grpcRoute, context) : undefined,
+        http2Route: output.http2Route != null ? deserializeAws_restJson1HttpGatewayRoute(output.http2Route, context) : undefined,
+        httpRoute: output.httpRoute != null ? deserializeAws_restJson1HttpGatewayRoute(output.httpRoute, context) : undefined,
         priority: (0, smithy_client_1.expectInt32)(output.priority),
     };
 };
@@ -12182,7 +12115,7 @@ const deserializeAws_restJson1GatewayRouteStatus = (output, context) => {
 };
 const deserializeAws_restJson1GatewayRouteTarget = (output, context) => {
     return {
-        virtualService: output.virtualService !== undefined && output.virtualService !== null
+        virtualService: output.virtualService != null
             ? deserializeAws_restJson1GatewayRouteVirtualService(output.virtualService, context)
             : undefined,
     };
@@ -12194,30 +12127,20 @@ const deserializeAws_restJson1GatewayRouteVirtualService = (output, context) => 
 };
 const deserializeAws_restJson1GrpcGatewayRoute = (output, context) => {
     return {
-        action: output.action !== undefined && output.action !== null
-            ? deserializeAws_restJson1GrpcGatewayRouteAction(output.action, context)
-            : undefined,
-        match: output.match !== undefined && output.match !== null
-            ? deserializeAws_restJson1GrpcGatewayRouteMatch(output.match, context)
-            : undefined,
+        action: output.action != null ? deserializeAws_restJson1GrpcGatewayRouteAction(output.action, context) : undefined,
+        match: output.match != null ? deserializeAws_restJson1GrpcGatewayRouteMatch(output.match, context) : undefined,
     };
 };
 const deserializeAws_restJson1GrpcGatewayRouteAction = (output, context) => {
     return {
-        rewrite: output.rewrite !== undefined && output.rewrite !== null
-            ? deserializeAws_restJson1GrpcGatewayRouteRewrite(output.rewrite, context)
-            : undefined,
-        target: output.target !== undefined && output.target !== null
-            ? deserializeAws_restJson1GatewayRouteTarget(output.target, context)
-            : undefined,
+        rewrite: output.rewrite != null ? deserializeAws_restJson1GrpcGatewayRouteRewrite(output.rewrite, context) : undefined,
+        target: output.target != null ? deserializeAws_restJson1GatewayRouteTarget(output.target, context) : undefined,
     };
 };
 const deserializeAws_restJson1GrpcGatewayRouteMatch = (output, context) => {
     return {
-        hostname: output.hostname !== undefined && output.hostname !== null
-            ? deserializeAws_restJson1GatewayRouteHostnameMatch(output.hostname, context)
-            : undefined,
-        metadata: output.metadata !== undefined && output.metadata !== null
+        hostname: output.hostname != null ? deserializeAws_restJson1GatewayRouteHostnameMatch(output.hostname, context) : undefined,
+        metadata: output.metadata != null
             ? deserializeAws_restJson1GrpcGatewayRouteMetadataList(output.metadata, context)
             : undefined,
         serviceName: (0, smithy_client_1.expectString)(output.serviceName),
@@ -12226,7 +12149,7 @@ const deserializeAws_restJson1GrpcGatewayRouteMatch = (output, context) => {
 const deserializeAws_restJson1GrpcGatewayRouteMetadata = (output, context) => {
     return {
         invert: (0, smithy_client_1.expectBoolean)(output.invert),
-        match: output.match !== undefined && output.match !== null
+        match: output.match != null
             ? deserializeAws_restJson1GrpcMetadataMatchMethod((0, smithy_client_1.expectUnion)(output.match), context)
             : undefined,
         name: (0, smithy_client_1.expectString)(output.name),
@@ -12245,7 +12168,7 @@ const deserializeAws_restJson1GrpcGatewayRouteMetadataList = (output, context) =
 };
 const deserializeAws_restJson1GrpcGatewayRouteRewrite = (output, context) => {
     return {
-        hostname: output.hostname !== undefined && output.hostname !== null
+        hostname: output.hostname != null
             ? deserializeAws_restJson1GatewayRouteHostnameRewrite(output.hostname, context)
             : undefined,
     };
@@ -12272,17 +12195,15 @@ const deserializeAws_restJson1GrpcMetadataMatchMethod = (output, context) => {
 };
 const deserializeAws_restJson1GrpcRetryPolicy = (output, context) => {
     return {
-        grpcRetryEvents: output.grpcRetryEvents !== undefined && output.grpcRetryEvents !== null
+        grpcRetryEvents: output.grpcRetryEvents != null
             ? deserializeAws_restJson1GrpcRetryPolicyEvents(output.grpcRetryEvents, context)
             : undefined,
-        httpRetryEvents: output.httpRetryEvents !== undefined && output.httpRetryEvents !== null
+        httpRetryEvents: output.httpRetryEvents != null
             ? deserializeAws_restJson1HttpRetryPolicyEvents(output.httpRetryEvents, context)
             : undefined,
         maxRetries: (0, smithy_client_1.expectLong)(output.maxRetries),
-        perRetryTimeout: output.perRetryTimeout !== undefined && output.perRetryTimeout !== null
-            ? deserializeAws_restJson1Duration(output.perRetryTimeout, context)
-            : undefined,
-        tcpRetryEvents: output.tcpRetryEvents !== undefined && output.tcpRetryEvents !== null
+        perRetryTimeout: output.perRetryTimeout != null ? deserializeAws_restJson1Duration(output.perRetryTimeout, context) : undefined,
+        tcpRetryEvents: output.tcpRetryEvents != null
             ? deserializeAws_restJson1TcpRetryPolicyEvents(output.tcpRetryEvents, context)
             : undefined,
     };
@@ -12300,32 +12221,22 @@ const deserializeAws_restJson1GrpcRetryPolicyEvents = (output, context) => {
 };
 const deserializeAws_restJson1GrpcRoute = (output, context) => {
     return {
-        action: output.action !== undefined && output.action !== null
-            ? deserializeAws_restJson1GrpcRouteAction(output.action, context)
-            : undefined,
-        match: output.match !== undefined && output.match !== null
-            ? deserializeAws_restJson1GrpcRouteMatch(output.match, context)
-            : undefined,
-        retryPolicy: output.retryPolicy !== undefined && output.retryPolicy !== null
-            ? deserializeAws_restJson1GrpcRetryPolicy(output.retryPolicy, context)
-            : undefined,
-        timeout: output.timeout !== undefined && output.timeout !== null
-            ? deserializeAws_restJson1GrpcTimeout(output.timeout, context)
-            : undefined,
+        action: output.action != null ? deserializeAws_restJson1GrpcRouteAction(output.action, context) : undefined,
+        match: output.match != null ? deserializeAws_restJson1GrpcRouteMatch(output.match, context) : undefined,
+        retryPolicy: output.retryPolicy != null ? deserializeAws_restJson1GrpcRetryPolicy(output.retryPolicy, context) : undefined,
+        timeout: output.timeout != null ? deserializeAws_restJson1GrpcTimeout(output.timeout, context) : undefined,
     };
 };
 const deserializeAws_restJson1GrpcRouteAction = (output, context) => {
     return {
-        weightedTargets: output.weightedTargets !== undefined && output.weightedTargets !== null
+        weightedTargets: output.weightedTargets != null
             ? deserializeAws_restJson1WeightedTargets(output.weightedTargets, context)
             : undefined,
     };
 };
 const deserializeAws_restJson1GrpcRouteMatch = (output, context) => {
     return {
-        metadata: output.metadata !== undefined && output.metadata !== null
-            ? deserializeAws_restJson1GrpcRouteMetadataList(output.metadata, context)
-            : undefined,
+        metadata: output.metadata != null ? deserializeAws_restJson1GrpcRouteMetadataList(output.metadata, context) : undefined,
         methodName: (0, smithy_client_1.expectString)(output.methodName),
         serviceName: (0, smithy_client_1.expectString)(output.serviceName),
     };
@@ -12333,7 +12244,7 @@ const deserializeAws_restJson1GrpcRouteMatch = (output, context) => {
 const deserializeAws_restJson1GrpcRouteMetadata = (output, context) => {
     return {
         invert: (0, smithy_client_1.expectBoolean)(output.invert),
-        match: output.match !== undefined && output.match !== null
+        match: output.match != null
             ? deserializeAws_restJson1GrpcRouteMetadataMatchMethod((0, smithy_client_1.expectUnion)(output.match), context)
             : undefined,
         name: (0, smithy_client_1.expectString)(output.name),
@@ -12372,12 +12283,8 @@ const deserializeAws_restJson1GrpcRouteMetadataMatchMethod = (output, context) =
 };
 const deserializeAws_restJson1GrpcTimeout = (output, context) => {
     return {
-        idle: output.idle !== undefined && output.idle !== null
-            ? deserializeAws_restJson1Duration(output.idle, context)
-            : undefined,
-        perRequest: output.perRequest !== undefined && output.perRequest !== null
-            ? deserializeAws_restJson1Duration(output.perRequest, context)
-            : undefined,
+        idle: output.idle != null ? deserializeAws_restJson1Duration(output.idle, context) : undefined,
+        perRequest: output.perRequest != null ? deserializeAws_restJson1Duration(output.perRequest, context) : undefined,
     };
 };
 const deserializeAws_restJson1HeaderMatchMethod = (output, context) => {
@@ -12413,28 +12320,20 @@ const deserializeAws_restJson1HealthCheckPolicy = (output, context) => {
 };
 const deserializeAws_restJson1HttpGatewayRoute = (output, context) => {
     return {
-        action: output.action !== undefined && output.action !== null
-            ? deserializeAws_restJson1HttpGatewayRouteAction(output.action, context)
-            : undefined,
-        match: output.match !== undefined && output.match !== null
-            ? deserializeAws_restJson1HttpGatewayRouteMatch(output.match, context)
-            : undefined,
+        action: output.action != null ? deserializeAws_restJson1HttpGatewayRouteAction(output.action, context) : undefined,
+        match: output.match != null ? deserializeAws_restJson1HttpGatewayRouteMatch(output.match, context) : undefined,
     };
 };
 const deserializeAws_restJson1HttpGatewayRouteAction = (output, context) => {
     return {
-        rewrite: output.rewrite !== undefined && output.rewrite !== null
-            ? deserializeAws_restJson1HttpGatewayRouteRewrite(output.rewrite, context)
-            : undefined,
-        target: output.target !== undefined && output.target !== null
-            ? deserializeAws_restJson1GatewayRouteTarget(output.target, context)
-            : undefined,
+        rewrite: output.rewrite != null ? deserializeAws_restJson1HttpGatewayRouteRewrite(output.rewrite, context) : undefined,
+        target: output.target != null ? deserializeAws_restJson1GatewayRouteTarget(output.target, context) : undefined,
     };
 };
 const deserializeAws_restJson1HttpGatewayRouteHeader = (output, context) => {
     return {
         invert: (0, smithy_client_1.expectBoolean)(output.invert),
-        match: output.match !== undefined && output.match !== null
+        match: output.match != null
             ? deserializeAws_restJson1HeaderMatchMethod((0, smithy_client_1.expectUnion)(output.match), context)
             : undefined,
         name: (0, smithy_client_1.expectString)(output.name),
@@ -12453,18 +12352,12 @@ const deserializeAws_restJson1HttpGatewayRouteHeaders = (output, context) => {
 };
 const deserializeAws_restJson1HttpGatewayRouteMatch = (output, context) => {
     return {
-        headers: output.headers !== undefined && output.headers !== null
-            ? deserializeAws_restJson1HttpGatewayRouteHeaders(output.headers, context)
-            : undefined,
-        hostname: output.hostname !== undefined && output.hostname !== null
-            ? deserializeAws_restJson1GatewayRouteHostnameMatch(output.hostname, context)
-            : undefined,
+        headers: output.headers != null ? deserializeAws_restJson1HttpGatewayRouteHeaders(output.headers, context) : undefined,
+        hostname: output.hostname != null ? deserializeAws_restJson1GatewayRouteHostnameMatch(output.hostname, context) : undefined,
         method: (0, smithy_client_1.expectString)(output.method),
-        path: output.path !== undefined && output.path !== null
-            ? deserializeAws_restJson1HttpPathMatch(output.path, context)
-            : undefined,
+        path: output.path != null ? deserializeAws_restJson1HttpPathMatch(output.path, context) : undefined,
         prefix: (0, smithy_client_1.expectString)(output.prefix),
-        queryParameters: output.queryParameters !== undefined && output.queryParameters !== null
+        queryParameters: output.queryParameters != null
             ? deserializeAws_restJson1HttpQueryParameters(output.queryParameters, context)
             : undefined,
     };
@@ -12482,15 +12375,11 @@ const deserializeAws_restJson1HttpGatewayRoutePrefixRewrite = (output, context) 
 };
 const deserializeAws_restJson1HttpGatewayRouteRewrite = (output, context) => {
     return {
-        hostname: output.hostname !== undefined && output.hostname !== null
+        hostname: output.hostname != null
             ? deserializeAws_restJson1GatewayRouteHostnameRewrite(output.hostname, context)
             : undefined,
-        path: output.path !== undefined && output.path !== null
-            ? deserializeAws_restJson1HttpGatewayRoutePathRewrite(output.path, context)
-            : undefined,
-        prefix: output.prefix !== undefined && output.prefix !== null
-            ? deserializeAws_restJson1HttpGatewayRoutePrefixRewrite(output.prefix, context)
-            : undefined,
+        path: output.path != null ? deserializeAws_restJson1HttpGatewayRoutePathRewrite(output.path, context) : undefined,
+        prefix: output.prefix != null ? deserializeAws_restJson1HttpGatewayRoutePrefixRewrite(output.prefix, context) : undefined,
     };
 };
 const deserializeAws_restJson1HttpPathMatch = (output, context) => {
@@ -12501,9 +12390,7 @@ const deserializeAws_restJson1HttpPathMatch = (output, context) => {
 };
 const deserializeAws_restJson1HttpQueryParameter = (output, context) => {
     return {
-        match: output.match !== undefined && output.match !== null
-            ? deserializeAws_restJson1QueryParameterMatch(output.match, context)
-            : undefined,
+        match: output.match != null ? deserializeAws_restJson1QueryParameterMatch(output.match, context) : undefined,
         name: (0, smithy_client_1.expectString)(output.name),
     };
 };
@@ -12520,14 +12407,12 @@ const deserializeAws_restJson1HttpQueryParameters = (output, context) => {
 };
 const deserializeAws_restJson1HttpRetryPolicy = (output, context) => {
     return {
-        httpRetryEvents: output.httpRetryEvents !== undefined && output.httpRetryEvents !== null
+        httpRetryEvents: output.httpRetryEvents != null
             ? deserializeAws_restJson1HttpRetryPolicyEvents(output.httpRetryEvents, context)
             : undefined,
         maxRetries: (0, smithy_client_1.expectLong)(output.maxRetries),
-        perRetryTimeout: output.perRetryTimeout !== undefined && output.perRetryTimeout !== null
-            ? deserializeAws_restJson1Duration(output.perRetryTimeout, context)
-            : undefined,
-        tcpRetryEvents: output.tcpRetryEvents !== undefined && output.tcpRetryEvents !== null
+        perRetryTimeout: output.perRetryTimeout != null ? deserializeAws_restJson1Duration(output.perRetryTimeout, context) : undefined,
+        tcpRetryEvents: output.tcpRetryEvents != null
             ? deserializeAws_restJson1TcpRetryPolicyEvents(output.tcpRetryEvents, context)
             : undefined,
     };
@@ -12545,23 +12430,15 @@ const deserializeAws_restJson1HttpRetryPolicyEvents = (output, context) => {
 };
 const deserializeAws_restJson1HttpRoute = (output, context) => {
     return {
-        action: output.action !== undefined && output.action !== null
-            ? deserializeAws_restJson1HttpRouteAction(output.action, context)
-            : undefined,
-        match: output.match !== undefined && output.match !== null
-            ? deserializeAws_restJson1HttpRouteMatch(output.match, context)
-            : undefined,
-        retryPolicy: output.retryPolicy !== undefined && output.retryPolicy !== null
-            ? deserializeAws_restJson1HttpRetryPolicy(output.retryPolicy, context)
-            : undefined,
-        timeout: output.timeout !== undefined && output.timeout !== null
-            ? deserializeAws_restJson1HttpTimeout(output.timeout, context)
-            : undefined,
+        action: output.action != null ? deserializeAws_restJson1HttpRouteAction(output.action, context) : undefined,
+        match: output.match != null ? deserializeAws_restJson1HttpRouteMatch(output.match, context) : undefined,
+        retryPolicy: output.retryPolicy != null ? deserializeAws_restJson1HttpRetryPolicy(output.retryPolicy, context) : undefined,
+        timeout: output.timeout != null ? deserializeAws_restJson1HttpTimeout(output.timeout, context) : undefined,
     };
 };
 const deserializeAws_restJson1HttpRouteAction = (output, context) => {
     return {
-        weightedTargets: output.weightedTargets !== undefined && output.weightedTargets !== null
+        weightedTargets: output.weightedTargets != null
             ? deserializeAws_restJson1WeightedTargets(output.weightedTargets, context)
             : undefined,
     };
@@ -12569,7 +12446,7 @@ const deserializeAws_restJson1HttpRouteAction = (output, context) => {
 const deserializeAws_restJson1HttpRouteHeader = (output, context) => {
     return {
         invert: (0, smithy_client_1.expectBoolean)(output.invert),
-        match: output.match !== undefined && output.match !== null
+        match: output.match != null
             ? deserializeAws_restJson1HeaderMatchMethod((0, smithy_client_1.expectUnion)(output.match), context)
             : undefined,
         name: (0, smithy_client_1.expectString)(output.name),
@@ -12588,15 +12465,11 @@ const deserializeAws_restJson1HttpRouteHeaders = (output, context) => {
 };
 const deserializeAws_restJson1HttpRouteMatch = (output, context) => {
     return {
-        headers: output.headers !== undefined && output.headers !== null
-            ? deserializeAws_restJson1HttpRouteHeaders(output.headers, context)
-            : undefined,
+        headers: output.headers != null ? deserializeAws_restJson1HttpRouteHeaders(output.headers, context) : undefined,
         method: (0, smithy_client_1.expectString)(output.method),
-        path: output.path !== undefined && output.path !== null
-            ? deserializeAws_restJson1HttpPathMatch(output.path, context)
-            : undefined,
+        path: output.path != null ? deserializeAws_restJson1HttpPathMatch(output.path, context) : undefined,
         prefix: (0, smithy_client_1.expectString)(output.prefix),
-        queryParameters: output.queryParameters !== undefined && output.queryParameters !== null
+        queryParameters: output.queryParameters != null
             ? deserializeAws_restJson1HttpQueryParameters(output.queryParameters, context)
             : undefined,
         scheme: (0, smithy_client_1.expectString)(output.scheme),
@@ -12604,34 +12477,24 @@ const deserializeAws_restJson1HttpRouteMatch = (output, context) => {
 };
 const deserializeAws_restJson1HttpTimeout = (output, context) => {
     return {
-        idle: output.idle !== undefined && output.idle !== null
-            ? deserializeAws_restJson1Duration(output.idle, context)
-            : undefined,
-        perRequest: output.perRequest !== undefined && output.perRequest !== null
-            ? deserializeAws_restJson1Duration(output.perRequest, context)
-            : undefined,
+        idle: output.idle != null ? deserializeAws_restJson1Duration(output.idle, context) : undefined,
+        perRequest: output.perRequest != null ? deserializeAws_restJson1Duration(output.perRequest, context) : undefined,
     };
 };
 const deserializeAws_restJson1Listener = (output, context) => {
     return {
-        connectionPool: output.connectionPool !== undefined && output.connectionPool !== null
+        connectionPool: output.connectionPool != null
             ? deserializeAws_restJson1VirtualNodeConnectionPool((0, smithy_client_1.expectUnion)(output.connectionPool), context)
             : undefined,
-        healthCheck: output.healthCheck !== undefined && output.healthCheck !== null
-            ? deserializeAws_restJson1HealthCheckPolicy(output.healthCheck, context)
-            : undefined,
-        outlierDetection: output.outlierDetection !== undefined && output.outlierDetection !== null
+        healthCheck: output.healthCheck != null ? deserializeAws_restJson1HealthCheckPolicy(output.healthCheck, context) : undefined,
+        outlierDetection: output.outlierDetection != null
             ? deserializeAws_restJson1OutlierDetection(output.outlierDetection, context)
             : undefined,
-        portMapping: output.portMapping !== undefined && output.portMapping !== null
-            ? deserializeAws_restJson1PortMapping(output.portMapping, context)
-            : undefined,
-        timeout: output.timeout !== undefined && output.timeout !== null
+        portMapping: output.portMapping != null ? deserializeAws_restJson1PortMapping(output.portMapping, context) : undefined,
+        timeout: output.timeout != null
             ? deserializeAws_restJson1ListenerTimeout((0, smithy_client_1.expectUnion)(output.timeout), context)
             : undefined,
-        tls: output.tls !== undefined && output.tls !== null
-            ? deserializeAws_restJson1ListenerTls(output.tls, context)
-            : undefined,
+        tls: output.tls != null ? deserializeAws_restJson1ListenerTls(output.tls, context) : undefined,
     };
 };
 const deserializeAws_restJson1Listeners = (output, context) => {
@@ -12670,11 +12533,11 @@ const deserializeAws_restJson1ListenerTimeout = (output, context) => {
 };
 const deserializeAws_restJson1ListenerTls = (output, context) => {
     return {
-        certificate: output.certificate !== undefined && output.certificate !== null
+        certificate: output.certificate != null
             ? deserializeAws_restJson1ListenerTlsCertificate((0, smithy_client_1.expectUnion)(output.certificate), context)
             : undefined,
         mode: (0, smithy_client_1.expectString)(output.mode),
-        validation: output.validation !== undefined && output.validation !== null
+        validation: output.validation != null
             ? deserializeAws_restJson1ListenerTlsValidationContext(output.validation, context)
             : undefined,
     };
@@ -12715,10 +12578,10 @@ const deserializeAws_restJson1ListenerTlsSdsCertificate = (output, context) => {
 };
 const deserializeAws_restJson1ListenerTlsValidationContext = (output, context) => {
     return {
-        subjectAlternativeNames: output.subjectAlternativeNames !== undefined && output.subjectAlternativeNames !== null
+        subjectAlternativeNames: output.subjectAlternativeNames != null
             ? deserializeAws_restJson1SubjectAlternativeNames(output.subjectAlternativeNames, context)
             : undefined,
-        trust: output.trust !== undefined && output.trust !== null
+        trust: output.trust != null
             ? deserializeAws_restJson1ListenerTlsValidationContextTrust((0, smithy_client_1.expectUnion)(output.trust), context)
             : undefined,
     };
@@ -12738,7 +12601,7 @@ const deserializeAws_restJson1ListenerTlsValidationContextTrust = (output, conte
 };
 const deserializeAws_restJson1Logging = (output, context) => {
     return {
-        accessLog: output.accessLog !== undefined && output.accessLog !== null
+        accessLog: output.accessLog != null
             ? deserializeAws_restJson1AccessLog((0, smithy_client_1.expectUnion)(output.accessLog), context)
             : undefined,
     };
@@ -12752,15 +12615,9 @@ const deserializeAws_restJson1MatchRange = (output, context) => {
 const deserializeAws_restJson1MeshData = (output, context) => {
     return {
         meshName: (0, smithy_client_1.expectString)(output.meshName),
-        metadata: output.metadata !== undefined && output.metadata !== null
-            ? deserializeAws_restJson1ResourceMetadata(output.metadata, context)
-            : undefined,
-        spec: output.spec !== undefined && output.spec !== null
-            ? deserializeAws_restJson1MeshSpec(output.spec, context)
-            : undefined,
-        status: output.status !== undefined && output.status !== null
-            ? deserializeAws_restJson1MeshStatus(output.status, context)
-            : undefined,
+        metadata: output.metadata != null ? deserializeAws_restJson1ResourceMetadata(output.metadata, context) : undefined,
+        spec: output.spec != null ? deserializeAws_restJson1MeshSpec(output.spec, context) : undefined,
+        status: output.status != null ? deserializeAws_restJson1MeshStatus(output.status, context) : undefined,
     };
 };
 const deserializeAws_restJson1MeshList = (output, context) => {
@@ -12777,10 +12634,8 @@ const deserializeAws_restJson1MeshList = (output, context) => {
 const deserializeAws_restJson1MeshRef = (output, context) => {
     return {
         arn: (0, smithy_client_1.expectString)(output.arn),
-        createdAt: output.createdAt !== undefined && output.createdAt !== null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt)))
-            : undefined,
-        lastUpdatedAt: output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
+        createdAt: output.createdAt != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt))) : undefined,
+        lastUpdatedAt: output.lastUpdatedAt != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.lastUpdatedAt)))
             : undefined,
         meshName: (0, smithy_client_1.expectString)(output.meshName),
@@ -12796,10 +12651,8 @@ const deserializeAws_restJson1MeshServiceDiscovery = (output, context) => {
 };
 const deserializeAws_restJson1MeshSpec = (output, context) => {
     return {
-        egressFilter: output.egressFilter !== undefined && output.egressFilter !== null
-            ? deserializeAws_restJson1EgressFilter(output.egressFilter, context)
-            : undefined,
-        serviceDiscovery: output.serviceDiscovery !== undefined && output.serviceDiscovery !== null
+        egressFilter: output.egressFilter != null ? deserializeAws_restJson1EgressFilter(output.egressFilter, context) : undefined,
+        serviceDiscovery: output.serviceDiscovery != null
             ? deserializeAws_restJson1MeshServiceDiscovery(output.serviceDiscovery, context)
             : undefined,
     };
@@ -12811,12 +12664,10 @@ const deserializeAws_restJson1MeshStatus = (output, context) => {
 };
 const deserializeAws_restJson1OutlierDetection = (output, context) => {
     return {
-        baseEjectionDuration: output.baseEjectionDuration !== undefined && output.baseEjectionDuration !== null
+        baseEjectionDuration: output.baseEjectionDuration != null
             ? deserializeAws_restJson1Duration(output.baseEjectionDuration, context)
             : undefined,
-        interval: output.interval !== undefined && output.interval !== null
-            ? deserializeAws_restJson1Duration(output.interval, context)
-            : undefined,
+        interval: output.interval != null ? deserializeAws_restJson1Duration(output.interval, context) : undefined,
         maxEjectionPercent: (0, smithy_client_1.expectInt32)(output.maxEjectionPercent),
         maxServerErrors: (0, smithy_client_1.expectLong)(output.maxServerErrors),
     };
@@ -12846,10 +12697,8 @@ const deserializeAws_restJson1QueryParameterMatch = (output, context) => {
 const deserializeAws_restJson1ResourceMetadata = (output, context) => {
     return {
         arn: (0, smithy_client_1.expectString)(output.arn),
-        createdAt: output.createdAt !== undefined && output.createdAt !== null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt)))
-            : undefined,
-        lastUpdatedAt: output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
+        createdAt: output.createdAt != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt))) : undefined,
+        lastUpdatedAt: output.lastUpdatedAt != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.lastUpdatedAt)))
             : undefined,
         meshOwner: (0, smithy_client_1.expectString)(output.meshOwner),
@@ -12861,16 +12710,10 @@ const deserializeAws_restJson1ResourceMetadata = (output, context) => {
 const deserializeAws_restJson1RouteData = (output, context) => {
     return {
         meshName: (0, smithy_client_1.expectString)(output.meshName),
-        metadata: output.metadata !== undefined && output.metadata !== null
-            ? deserializeAws_restJson1ResourceMetadata(output.metadata, context)
-            : undefined,
+        metadata: output.metadata != null ? deserializeAws_restJson1ResourceMetadata(output.metadata, context) : undefined,
         routeName: (0, smithy_client_1.expectString)(output.routeName),
-        spec: output.spec !== undefined && output.spec !== null
-            ? deserializeAws_restJson1RouteSpec(output.spec, context)
-            : undefined,
-        status: output.status !== undefined && output.status !== null
-            ? deserializeAws_restJson1RouteStatus(output.status, context)
-            : undefined,
+        spec: output.spec != null ? deserializeAws_restJson1RouteSpec(output.spec, context) : undefined,
+        status: output.status != null ? deserializeAws_restJson1RouteStatus(output.status, context) : undefined,
         virtualRouterName: (0, smithy_client_1.expectString)(output.virtualRouterName),
     };
 };
@@ -12888,10 +12731,8 @@ const deserializeAws_restJson1RouteList = (output, context) => {
 const deserializeAws_restJson1RouteRef = (output, context) => {
     return {
         arn: (0, smithy_client_1.expectString)(output.arn),
-        createdAt: output.createdAt !== undefined && output.createdAt !== null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt)))
-            : undefined,
-        lastUpdatedAt: output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
+        createdAt: output.createdAt != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt))) : undefined,
+        lastUpdatedAt: output.lastUpdatedAt != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.lastUpdatedAt)))
             : undefined,
         meshName: (0, smithy_client_1.expectString)(output.meshName),
@@ -12904,19 +12745,11 @@ const deserializeAws_restJson1RouteRef = (output, context) => {
 };
 const deserializeAws_restJson1RouteSpec = (output, context) => {
     return {
-        grpcRoute: output.grpcRoute !== undefined && output.grpcRoute !== null
-            ? deserializeAws_restJson1GrpcRoute(output.grpcRoute, context)
-            : undefined,
-        http2Route: output.http2Route !== undefined && output.http2Route !== null
-            ? deserializeAws_restJson1HttpRoute(output.http2Route, context)
-            : undefined,
-        httpRoute: output.httpRoute !== undefined && output.httpRoute !== null
-            ? deserializeAws_restJson1HttpRoute(output.httpRoute, context)
-            : undefined,
+        grpcRoute: output.grpcRoute != null ? deserializeAws_restJson1GrpcRoute(output.grpcRoute, context) : undefined,
+        http2Route: output.http2Route != null ? deserializeAws_restJson1HttpRoute(output.http2Route, context) : undefined,
+        httpRoute: output.httpRoute != null ? deserializeAws_restJson1HttpRoute(output.httpRoute, context) : undefined,
         priority: (0, smithy_client_1.expectInt32)(output.priority),
-        tcpRoute: output.tcpRoute !== undefined && output.tcpRoute !== null
-            ? deserializeAws_restJson1TcpRoute(output.tcpRoute, context)
-            : undefined,
+        tcpRoute: output.tcpRoute != null ? deserializeAws_restJson1TcpRoute(output.tcpRoute, context) : undefined,
     };
 };
 const deserializeAws_restJson1RouteStatus = (output, context) => {
@@ -12950,16 +12783,12 @@ const deserializeAws_restJson1SubjectAlternativeNameList = (output, context) => 
 };
 const deserializeAws_restJson1SubjectAlternativeNameMatchers = (output, context) => {
     return {
-        exact: output.exact !== undefined && output.exact !== null
-            ? deserializeAws_restJson1SubjectAlternativeNameList(output.exact, context)
-            : undefined,
+        exact: output.exact != null ? deserializeAws_restJson1SubjectAlternativeNameList(output.exact, context) : undefined,
     };
 };
 const deserializeAws_restJson1SubjectAlternativeNames = (output, context) => {
     return {
-        match: output.match !== undefined && output.match !== null
-            ? deserializeAws_restJson1SubjectAlternativeNameMatchers(output.match, context)
-            : undefined,
+        match: output.match != null ? deserializeAws_restJson1SubjectAlternativeNameMatchers(output.match, context) : undefined,
     };
 };
 const deserializeAws_restJson1TagList = (output, context) => {
@@ -12992,41 +12821,35 @@ const deserializeAws_restJson1TcpRetryPolicyEvents = (output, context) => {
 };
 const deserializeAws_restJson1TcpRoute = (output, context) => {
     return {
-        action: output.action !== undefined && output.action !== null
-            ? deserializeAws_restJson1TcpRouteAction(output.action, context)
-            : undefined,
-        timeout: output.timeout !== undefined && output.timeout !== null
-            ? deserializeAws_restJson1TcpTimeout(output.timeout, context)
-            : undefined,
+        action: output.action != null ? deserializeAws_restJson1TcpRouteAction(output.action, context) : undefined,
+        timeout: output.timeout != null ? deserializeAws_restJson1TcpTimeout(output.timeout, context) : undefined,
     };
 };
 const deserializeAws_restJson1TcpRouteAction = (output, context) => {
     return {
-        weightedTargets: output.weightedTargets !== undefined && output.weightedTargets !== null
+        weightedTargets: output.weightedTargets != null
             ? deserializeAws_restJson1WeightedTargets(output.weightedTargets, context)
             : undefined,
     };
 };
 const deserializeAws_restJson1TcpTimeout = (output, context) => {
     return {
-        idle: output.idle !== undefined && output.idle !== null
-            ? deserializeAws_restJson1Duration(output.idle, context)
-            : undefined,
+        idle: output.idle != null ? deserializeAws_restJson1Duration(output.idle, context) : undefined,
     };
 };
 const deserializeAws_restJson1TlsValidationContext = (output, context) => {
     return {
-        subjectAlternativeNames: output.subjectAlternativeNames !== undefined && output.subjectAlternativeNames !== null
+        subjectAlternativeNames: output.subjectAlternativeNames != null
             ? deserializeAws_restJson1SubjectAlternativeNames(output.subjectAlternativeNames, context)
             : undefined,
-        trust: output.trust !== undefined && output.trust !== null
+        trust: output.trust != null
             ? deserializeAws_restJson1TlsValidationContextTrust((0, smithy_client_1.expectUnion)(output.trust), context)
             : undefined,
     };
 };
 const deserializeAws_restJson1TlsValidationContextAcmTrust = (output, context) => {
     return {
-        certificateAuthorityArns: output.certificateAuthorityArns !== undefined && output.certificateAuthorityArns !== null
+        certificateAuthorityArns: output.certificateAuthorityArns != null
             ? deserializeAws_restJson1CertificateAuthorityArns(output.certificateAuthorityArns, context)
             : undefined,
     };
@@ -13069,7 +12892,7 @@ const deserializeAws_restJson1VirtualGatewayAccessLog = (output, context) => {
 };
 const deserializeAws_restJson1VirtualGatewayBackendDefaults = (output, context) => {
     return {
-        clientPolicy: output.clientPolicy !== undefined && output.clientPolicy !== null
+        clientPolicy: output.clientPolicy != null
             ? deserializeAws_restJson1VirtualGatewayClientPolicy(output.clientPolicy, context)
             : undefined,
     };
@@ -13087,21 +12910,17 @@ const deserializeAws_restJson1VirtualGatewayCertificateAuthorityArns = (output, 
 };
 const deserializeAws_restJson1VirtualGatewayClientPolicy = (output, context) => {
     return {
-        tls: output.tls !== undefined && output.tls !== null
-            ? deserializeAws_restJson1VirtualGatewayClientPolicyTls(output.tls, context)
-            : undefined,
+        tls: output.tls != null ? deserializeAws_restJson1VirtualGatewayClientPolicyTls(output.tls, context) : undefined,
     };
 };
 const deserializeAws_restJson1VirtualGatewayClientPolicyTls = (output, context) => {
     return {
-        certificate: output.certificate !== undefined && output.certificate !== null
+        certificate: output.certificate != null
             ? deserializeAws_restJson1VirtualGatewayClientTlsCertificate((0, smithy_client_1.expectUnion)(output.certificate), context)
             : undefined,
         enforce: (0, smithy_client_1.expectBoolean)(output.enforce),
-        ports: output.ports !== undefined && output.ports !== null
-            ? deserializeAws_restJson1PortSet(output.ports, context)
-            : undefined,
-        validation: output.validation !== undefined && output.validation !== null
+        ports: output.ports != null ? deserializeAws_restJson1PortSet(output.ports, context) : undefined,
+        validation: output.validation != null
             ? deserializeAws_restJson1VirtualGatewayTlsValidationContext(output.validation, context)
             : undefined,
     };
@@ -13140,15 +12959,9 @@ const deserializeAws_restJson1VirtualGatewayConnectionPool = (output, context) =
 const deserializeAws_restJson1VirtualGatewayData = (output, context) => {
     return {
         meshName: (0, smithy_client_1.expectString)(output.meshName),
-        metadata: output.metadata !== undefined && output.metadata !== null
-            ? deserializeAws_restJson1ResourceMetadata(output.metadata, context)
-            : undefined,
-        spec: output.spec !== undefined && output.spec !== null
-            ? deserializeAws_restJson1VirtualGatewaySpec(output.spec, context)
-            : undefined,
-        status: output.status !== undefined && output.status !== null
-            ? deserializeAws_restJson1VirtualGatewayStatus(output.status, context)
-            : undefined,
+        metadata: output.metadata != null ? deserializeAws_restJson1ResourceMetadata(output.metadata, context) : undefined,
+        spec: output.spec != null ? deserializeAws_restJson1VirtualGatewaySpec(output.spec, context) : undefined,
+        status: output.status != null ? deserializeAws_restJson1VirtualGatewayStatus(output.status, context) : undefined,
         virtualGatewayName: (0, smithy_client_1.expectString)(output.virtualGatewayName),
     };
 };
@@ -13197,18 +13010,16 @@ const deserializeAws_restJson1VirtualGatewayList = (output, context) => {
 };
 const deserializeAws_restJson1VirtualGatewayListener = (output, context) => {
     return {
-        connectionPool: output.connectionPool !== undefined && output.connectionPool !== null
+        connectionPool: output.connectionPool != null
             ? deserializeAws_restJson1VirtualGatewayConnectionPool((0, smithy_client_1.expectUnion)(output.connectionPool), context)
             : undefined,
-        healthCheck: output.healthCheck !== undefined && output.healthCheck !== null
+        healthCheck: output.healthCheck != null
             ? deserializeAws_restJson1VirtualGatewayHealthCheckPolicy(output.healthCheck, context)
             : undefined,
-        portMapping: output.portMapping !== undefined && output.portMapping !== null
+        portMapping: output.portMapping != null
             ? deserializeAws_restJson1VirtualGatewayPortMapping(output.portMapping, context)
             : undefined,
-        tls: output.tls !== undefined && output.tls !== null
-            ? deserializeAws_restJson1VirtualGatewayListenerTls(output.tls, context)
-            : undefined,
+        tls: output.tls != null ? deserializeAws_restJson1VirtualGatewayListenerTls(output.tls, context) : undefined,
     };
 };
 const deserializeAws_restJson1VirtualGatewayListeners = (output, context) => {
@@ -13224,11 +13035,11 @@ const deserializeAws_restJson1VirtualGatewayListeners = (output, context) => {
 };
 const deserializeAws_restJson1VirtualGatewayListenerTls = (output, context) => {
     return {
-        certificate: output.certificate !== undefined && output.certificate !== null
+        certificate: output.certificate != null
             ? deserializeAws_restJson1VirtualGatewayListenerTlsCertificate((0, smithy_client_1.expectUnion)(output.certificate), context)
             : undefined,
         mode: (0, smithy_client_1.expectString)(output.mode),
-        validation: output.validation !== undefined && output.validation !== null
+        validation: output.validation != null
             ? deserializeAws_restJson1VirtualGatewayListenerTlsValidationContext(output.validation, context)
             : undefined,
     };
@@ -13269,10 +13080,10 @@ const deserializeAws_restJson1VirtualGatewayListenerTlsSdsCertificate = (output,
 };
 const deserializeAws_restJson1VirtualGatewayListenerTlsValidationContext = (output, context) => {
     return {
-        subjectAlternativeNames: output.subjectAlternativeNames !== undefined && output.subjectAlternativeNames !== null
+        subjectAlternativeNames: output.subjectAlternativeNames != null
             ? deserializeAws_restJson1SubjectAlternativeNames(output.subjectAlternativeNames, context)
             : undefined,
-        trust: output.trust !== undefined && output.trust !== null
+        trust: output.trust != null
             ? deserializeAws_restJson1VirtualGatewayListenerTlsValidationContextTrust((0, smithy_client_1.expectUnion)(output.trust), context)
             : undefined,
     };
@@ -13292,7 +13103,7 @@ const deserializeAws_restJson1VirtualGatewayListenerTlsValidationContextTrust = 
 };
 const deserializeAws_restJson1VirtualGatewayLogging = (output, context) => {
     return {
-        accessLog: output.accessLog !== undefined && output.accessLog !== null
+        accessLog: output.accessLog != null
             ? deserializeAws_restJson1VirtualGatewayAccessLog((0, smithy_client_1.expectUnion)(output.accessLog), context)
             : undefined,
     };
@@ -13306,10 +13117,8 @@ const deserializeAws_restJson1VirtualGatewayPortMapping = (output, context) => {
 const deserializeAws_restJson1VirtualGatewayRef = (output, context) => {
     return {
         arn: (0, smithy_client_1.expectString)(output.arn),
-        createdAt: output.createdAt !== undefined && output.createdAt !== null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt)))
-            : undefined,
-        lastUpdatedAt: output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
+        createdAt: output.createdAt != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt))) : undefined,
+        lastUpdatedAt: output.lastUpdatedAt != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.lastUpdatedAt)))
             : undefined,
         meshName: (0, smithy_client_1.expectString)(output.meshName),
@@ -13321,15 +13130,11 @@ const deserializeAws_restJson1VirtualGatewayRef = (output, context) => {
 };
 const deserializeAws_restJson1VirtualGatewaySpec = (output, context) => {
     return {
-        backendDefaults: output.backendDefaults !== undefined && output.backendDefaults !== null
+        backendDefaults: output.backendDefaults != null
             ? deserializeAws_restJson1VirtualGatewayBackendDefaults(output.backendDefaults, context)
             : undefined,
-        listeners: output.listeners !== undefined && output.listeners !== null
-            ? deserializeAws_restJson1VirtualGatewayListeners(output.listeners, context)
-            : undefined,
-        logging: output.logging !== undefined && output.logging !== null
-            ? deserializeAws_restJson1VirtualGatewayLogging(output.logging, context)
-            : undefined,
+        listeners: output.listeners != null ? deserializeAws_restJson1VirtualGatewayListeners(output.listeners, context) : undefined,
+        logging: output.logging != null ? deserializeAws_restJson1VirtualGatewayLogging(output.logging, context) : undefined,
     };
 };
 const deserializeAws_restJson1VirtualGatewayStatus = (output, context) => {
@@ -13339,17 +13144,17 @@ const deserializeAws_restJson1VirtualGatewayStatus = (output, context) => {
 };
 const deserializeAws_restJson1VirtualGatewayTlsValidationContext = (output, context) => {
     return {
-        subjectAlternativeNames: output.subjectAlternativeNames !== undefined && output.subjectAlternativeNames !== null
+        subjectAlternativeNames: output.subjectAlternativeNames != null
             ? deserializeAws_restJson1SubjectAlternativeNames(output.subjectAlternativeNames, context)
             : undefined,
-        trust: output.trust !== undefined && output.trust !== null
+        trust: output.trust != null
             ? deserializeAws_restJson1VirtualGatewayTlsValidationContextTrust((0, smithy_client_1.expectUnion)(output.trust), context)
             : undefined,
     };
 };
 const deserializeAws_restJson1VirtualGatewayTlsValidationContextAcmTrust = (output, context) => {
     return {
-        certificateAuthorityArns: output.certificateAuthorityArns !== undefined && output.certificateAuthorityArns !== null
+        certificateAuthorityArns: output.certificateAuthorityArns != null
             ? deserializeAws_restJson1VirtualGatewayCertificateAuthorityArns(output.certificateAuthorityArns, context)
             : undefined,
     };
@@ -13408,15 +13213,9 @@ const deserializeAws_restJson1VirtualNodeConnectionPool = (output, context) => {
 const deserializeAws_restJson1VirtualNodeData = (output, context) => {
     return {
         meshName: (0, smithy_client_1.expectString)(output.meshName),
-        metadata: output.metadata !== undefined && output.metadata !== null
-            ? deserializeAws_restJson1ResourceMetadata(output.metadata, context)
-            : undefined,
-        spec: output.spec !== undefined && output.spec !== null
-            ? deserializeAws_restJson1VirtualNodeSpec(output.spec, context)
-            : undefined,
-        status: output.status !== undefined && output.status !== null
-            ? deserializeAws_restJson1VirtualNodeStatus(output.status, context)
-            : undefined,
+        metadata: output.metadata != null ? deserializeAws_restJson1ResourceMetadata(output.metadata, context) : undefined,
+        spec: output.spec != null ? deserializeAws_restJson1VirtualNodeSpec(output.spec, context) : undefined,
+        status: output.status != null ? deserializeAws_restJson1VirtualNodeStatus(output.status, context) : undefined,
         virtualNodeName: (0, smithy_client_1.expectString)(output.virtualNodeName),
     };
 };
@@ -13450,10 +13249,8 @@ const deserializeAws_restJson1VirtualNodeList = (output, context) => {
 const deserializeAws_restJson1VirtualNodeRef = (output, context) => {
     return {
         arn: (0, smithy_client_1.expectString)(output.arn),
-        createdAt: output.createdAt !== undefined && output.createdAt !== null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt)))
-            : undefined,
-        lastUpdatedAt: output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
+        createdAt: output.createdAt != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt))) : undefined,
+        lastUpdatedAt: output.lastUpdatedAt != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.lastUpdatedAt)))
             : undefined,
         meshName: (0, smithy_client_1.expectString)(output.meshName),
@@ -13470,19 +13267,13 @@ const deserializeAws_restJson1VirtualNodeServiceProvider = (output, context) => 
 };
 const deserializeAws_restJson1VirtualNodeSpec = (output, context) => {
     return {
-        backendDefaults: output.backendDefaults !== undefined && output.backendDefaults !== null
+        backendDefaults: output.backendDefaults != null
             ? deserializeAws_restJson1BackendDefaults(output.backendDefaults, context)
             : undefined,
-        backends: output.backends !== undefined && output.backends !== null
-            ? deserializeAws_restJson1Backends(output.backends, context)
-            : undefined,
-        listeners: output.listeners !== undefined && output.listeners !== null
-            ? deserializeAws_restJson1Listeners(output.listeners, context)
-            : undefined,
-        logging: output.logging !== undefined && output.logging !== null
-            ? deserializeAws_restJson1Logging(output.logging, context)
-            : undefined,
-        serviceDiscovery: output.serviceDiscovery !== undefined && output.serviceDiscovery !== null
+        backends: output.backends != null ? deserializeAws_restJson1Backends(output.backends, context) : undefined,
+        listeners: output.listeners != null ? deserializeAws_restJson1Listeners(output.listeners, context) : undefined,
+        logging: output.logging != null ? deserializeAws_restJson1Logging(output.logging, context) : undefined,
+        serviceDiscovery: output.serviceDiscovery != null
             ? deserializeAws_restJson1ServiceDiscovery((0, smithy_client_1.expectUnion)(output.serviceDiscovery), context)
             : undefined,
     };
@@ -13500,15 +13291,9 @@ const deserializeAws_restJson1VirtualNodeTcpConnectionPool = (output, context) =
 const deserializeAws_restJson1VirtualRouterData = (output, context) => {
     return {
         meshName: (0, smithy_client_1.expectString)(output.meshName),
-        metadata: output.metadata !== undefined && output.metadata !== null
-            ? deserializeAws_restJson1ResourceMetadata(output.metadata, context)
-            : undefined,
-        spec: output.spec !== undefined && output.spec !== null
-            ? deserializeAws_restJson1VirtualRouterSpec(output.spec, context)
-            : undefined,
-        status: output.status !== undefined && output.status !== null
-            ? deserializeAws_restJson1VirtualRouterStatus(output.status, context)
-            : undefined,
+        metadata: output.metadata != null ? deserializeAws_restJson1ResourceMetadata(output.metadata, context) : undefined,
+        spec: output.spec != null ? deserializeAws_restJson1VirtualRouterSpec(output.spec, context) : undefined,
+        status: output.status != null ? deserializeAws_restJson1VirtualRouterStatus(output.status, context) : undefined,
         virtualRouterName: (0, smithy_client_1.expectString)(output.virtualRouterName),
     };
 };
@@ -13525,9 +13310,7 @@ const deserializeAws_restJson1VirtualRouterList = (output, context) => {
 };
 const deserializeAws_restJson1VirtualRouterListener = (output, context) => {
     return {
-        portMapping: output.portMapping !== undefined && output.portMapping !== null
-            ? deserializeAws_restJson1PortMapping(output.portMapping, context)
-            : undefined,
+        portMapping: output.portMapping != null ? deserializeAws_restJson1PortMapping(output.portMapping, context) : undefined,
     };
 };
 const deserializeAws_restJson1VirtualRouterListeners = (output, context) => {
@@ -13544,10 +13327,8 @@ const deserializeAws_restJson1VirtualRouterListeners = (output, context) => {
 const deserializeAws_restJson1VirtualRouterRef = (output, context) => {
     return {
         arn: (0, smithy_client_1.expectString)(output.arn),
-        createdAt: output.createdAt !== undefined && output.createdAt !== null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt)))
-            : undefined,
-        lastUpdatedAt: output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
+        createdAt: output.createdAt != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt))) : undefined,
+        lastUpdatedAt: output.lastUpdatedAt != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.lastUpdatedAt)))
             : undefined,
         meshName: (0, smithy_client_1.expectString)(output.meshName),
@@ -13564,9 +13345,7 @@ const deserializeAws_restJson1VirtualRouterServiceProvider = (output, context) =
 };
 const deserializeAws_restJson1VirtualRouterSpec = (output, context) => {
     return {
-        listeners: output.listeners !== undefined && output.listeners !== null
-            ? deserializeAws_restJson1VirtualRouterListeners(output.listeners, context)
-            : undefined,
+        listeners: output.listeners != null ? deserializeAws_restJson1VirtualRouterListeners(output.listeners, context) : undefined,
     };
 };
 const deserializeAws_restJson1VirtualRouterStatus = (output, context) => {
@@ -13576,24 +13355,16 @@ const deserializeAws_restJson1VirtualRouterStatus = (output, context) => {
 };
 const deserializeAws_restJson1VirtualServiceBackend = (output, context) => {
     return {
-        clientPolicy: output.clientPolicy !== undefined && output.clientPolicy !== null
-            ? deserializeAws_restJson1ClientPolicy(output.clientPolicy, context)
-            : undefined,
+        clientPolicy: output.clientPolicy != null ? deserializeAws_restJson1ClientPolicy(output.clientPolicy, context) : undefined,
         virtualServiceName: (0, smithy_client_1.expectString)(output.virtualServiceName),
     };
 };
 const deserializeAws_restJson1VirtualServiceData = (output, context) => {
     return {
         meshName: (0, smithy_client_1.expectString)(output.meshName),
-        metadata: output.metadata !== undefined && output.metadata !== null
-            ? deserializeAws_restJson1ResourceMetadata(output.metadata, context)
-            : undefined,
-        spec: output.spec !== undefined && output.spec !== null
-            ? deserializeAws_restJson1VirtualServiceSpec(output.spec, context)
-            : undefined,
-        status: output.status !== undefined && output.status !== null
-            ? deserializeAws_restJson1VirtualServiceStatus(output.status, context)
-            : undefined,
+        metadata: output.metadata != null ? deserializeAws_restJson1ResourceMetadata(output.metadata, context) : undefined,
+        spec: output.spec != null ? deserializeAws_restJson1VirtualServiceSpec(output.spec, context) : undefined,
+        status: output.status != null ? deserializeAws_restJson1VirtualServiceStatus(output.status, context) : undefined,
         virtualServiceName: (0, smithy_client_1.expectString)(output.virtualServiceName),
     };
 };
@@ -13624,10 +13395,8 @@ const deserializeAws_restJson1VirtualServiceProvider = (output, context) => {
 const deserializeAws_restJson1VirtualServiceRef = (output, context) => {
     return {
         arn: (0, smithy_client_1.expectString)(output.arn),
-        createdAt: output.createdAt !== undefined && output.createdAt !== null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt)))
-            : undefined,
-        lastUpdatedAt: output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
+        createdAt: output.createdAt != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.createdAt))) : undefined,
+        lastUpdatedAt: output.lastUpdatedAt != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.lastUpdatedAt)))
             : undefined,
         meshName: (0, smithy_client_1.expectString)(output.meshName),
@@ -13639,7 +13408,7 @@ const deserializeAws_restJson1VirtualServiceRef = (output, context) => {
 };
 const deserializeAws_restJson1VirtualServiceSpec = (output, context) => {
     return {
-        provider: output.provider !== undefined && output.provider !== null
+        provider: output.provider != null
             ? deserializeAws_restJson1VirtualServiceProvider((0, smithy_client_1.expectUnion)(output.provider), context)
             : undefined,
     };
@@ -13715,7 +13484,6 @@ const loadRestJsonErrorCode = (output, data) => {
     if (data["__type"] !== undefined) {
         return sanitizeErrorCode(data["__type"]);
     }
-    return "";
 };
 
 
@@ -14123,6 +13891,15 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.defaultRegionInfoProvider = void 0;
 const config_resolver_1 = __nccwpck_require__(6153);
 const regionHash = {
+    "ap-east-1": {
+        variants: [
+            {
+                hostname: "portal.sso.ap-east-1.amazonaws.com",
+                tags: [],
+            },
+        ],
+        signingRegion: "ap-east-1",
+    },
     "ap-northeast-1": {
         variants: [
             {
@@ -14204,6 +13981,15 @@ const regionHash = {
         ],
         signingRegion: "eu-north-1",
     },
+    "eu-south-1": {
+        variants: [
+            {
+                hostname: "portal.sso.eu-south-1.amazonaws.com",
+                tags: [],
+            },
+        ],
+        signingRegion: "eu-south-1",
+    },
     "eu-west-1": {
         variants: [
             {
@@ -14230,6 +14016,15 @@ const regionHash = {
             },
         ],
         signingRegion: "eu-west-3",
+    },
+    "me-south-1": {
+        variants: [
+            {
+                hostname: "portal.sso.me-south-1.amazonaws.com",
+                tags: [],
+            },
+        ],
+        signingRegion: "me-south-1",
     },
     "sa-east-1": {
         variants: [
@@ -14830,8 +14625,7 @@ const deserializeAws_restJson1GetRoleCredentialsCommandError = async (output, co
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InvalidRequestException":
         case "com.amazonaws.sso#InvalidRequestException":
@@ -14847,10 +14641,12 @@ const deserializeAws_restJson1GetRoleCredentialsCommandError = async (output, co
             throw await deserializeAws_restJson1UnauthorizedExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SSOServiceException_1.SSOServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -14880,8 +14676,7 @@ const deserializeAws_restJson1ListAccountRolesCommandError = async (output, cont
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InvalidRequestException":
         case "com.amazonaws.sso#InvalidRequestException":
@@ -14897,10 +14692,12 @@ const deserializeAws_restJson1ListAccountRolesCommandError = async (output, cont
             throw await deserializeAws_restJson1UnauthorizedExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SSOServiceException_1.SSOServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -14930,8 +14727,7 @@ const deserializeAws_restJson1ListAccountsCommandError = async (output, context)
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InvalidRequestException":
         case "com.amazonaws.sso#InvalidRequestException":
@@ -14947,10 +14743,12 @@ const deserializeAws_restJson1ListAccountsCommandError = async (output, context)
             throw await deserializeAws_restJson1UnauthorizedExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SSOServiceException_1.SSOServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -14972,8 +14770,7 @@ const deserializeAws_restJson1LogoutCommandError = async (output, context) => {
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InvalidRequestException":
         case "com.amazonaws.sso#InvalidRequestException":
@@ -14986,10 +14783,12 @@ const deserializeAws_restJson1LogoutCommandError = async (output, context) => {
             throw await deserializeAws_restJson1UnauthorizedExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SSOServiceException_1.SSOServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -15134,7 +14933,6 @@ const loadRestJsonErrorCode = (output, data) => {
     if (data["__type"] !== undefined) {
         return sanitizeErrorCode(data["__type"]);
     }
-    return "";
 };
 
 
@@ -16522,8 +16320,7 @@ const deserializeAws_queryAssumeRoleCommandError = async (output, context) => {
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "ExpiredTokenException":
         case "com.amazonaws.sts#ExpiredTokenException":
@@ -16539,10 +16336,12 @@ const deserializeAws_queryAssumeRoleCommandError = async (output, context) => {
             throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -16567,8 +16366,7 @@ const deserializeAws_queryAssumeRoleWithSAMLCommandError = async (output, contex
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "ExpiredTokenException":
         case "com.amazonaws.sts#ExpiredTokenException":
@@ -16590,10 +16388,12 @@ const deserializeAws_queryAssumeRoleWithSAMLCommandError = async (output, contex
             throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -16618,8 +16418,7 @@ const deserializeAws_queryAssumeRoleWithWebIdentityCommandError = async (output,
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "ExpiredTokenException":
         case "com.amazonaws.sts#ExpiredTokenException":
@@ -16644,10 +16443,12 @@ const deserializeAws_queryAssumeRoleWithWebIdentityCommandError = async (output,
             throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -16672,18 +16473,19 @@ const deserializeAws_queryDecodeAuthorizationMessageCommandError = async (output
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InvalidAuthorizationMessageException":
         case "com.amazonaws.sts#InvalidAuthorizationMessageException":
             throw await deserializeAws_queryInvalidAuthorizationMessageExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -16708,15 +16510,16 @@ const deserializeAws_queryGetAccessKeyInfoCommandError = async (output, context)
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -16741,15 +16544,16 @@ const deserializeAws_queryGetCallerIdentityCommandError = async (output, context
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -16774,8 +16578,7 @@ const deserializeAws_queryGetFederationTokenCommandError = async (output, contex
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "MalformedPolicyDocumentException":
         case "com.amazonaws.sts#MalformedPolicyDocumentException":
@@ -16788,10 +16591,12 @@ const deserializeAws_queryGetFederationTokenCommandError = async (output, contex
             throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -16816,18 +16621,19 @@ const deserializeAws_queryGetSessionTokenCommandError = async (output, context) 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "RegionDisabledException":
         case "com.amazonaws.sts#RegionDisabledException":
             throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -17464,7 +17270,6 @@ const loadQueryErrorCode = (output, data) => {
     if (output.statusCode == 404) {
         return "NotFound";
     }
-    return "";
 };
 
 
@@ -21697,19 +21502,26 @@ const parseIni = (iniData) => {
     const map = {};
     let currentSection;
     for (let line of iniData.split(/\r?\n/)) {
-        line = line.split(/(^|\s)[;#]/)[0];
-        const section = line.match(/^\s*\[([^\[\]]+)]\s*$/);
-        if (section) {
-            currentSection = section[1];
+        line = line.split(/(^|\s)[;#]/)[0].trim();
+        const isSection = line[0] === "[" && line[line.length - 1] === "]";
+        if (isSection) {
+            currentSection = line.substring(1, line.length - 1);
             if (profileNameBlockList.includes(currentSection)) {
                 throw new Error(`Found invalid profile name "${currentSection}"`);
             }
         }
         else if (currentSection) {
-            const item = line.match(/^\s*(.+?)\s*=\s*(.+?)\s*$/);
-            if (item) {
+            const indexOfEqualsSign = line.indexOf("=");
+            const start = 0;
+            const end = line.length - 1;
+            const isAssignment = indexOfEqualsSign !== -1 && indexOfEqualsSign !== start && indexOfEqualsSign !== end;
+            if (isAssignment) {
+                const [name, value] = [
+                    line.substring(0, indexOfEqualsSign).trim(),
+                    line.substring(indexOfEqualsSign + 1).trim(),
+                ];
                 map[currentSection] = map[currentSection] || {};
-                map[currentSection][item[1]] = item[2];
+                map[currentSection][name] = value;
             }
         }
     }
@@ -22079,6 +21891,9 @@ const constants_1 = __nccwpck_require__(342);
 const getCanonicalHeaders = ({ headers }, unsignableHeaders, signableHeaders) => {
     const canonical = {};
     for (const headerName of Object.keys(headers).sort()) {
+        if (!headers[headerName]) {
+            continue;
+        }
         const canonicalHeaderName = headerName.toLowerCase();
         if (canonicalHeaderName in constants_1.ALWAYS_UNSIGNABLE_HEADERS ||
             (unsignableHeaders === null || unsignableHeaders === void 0 ? void 0 : unsignableHeaders.has(canonicalHeaderName)) ||
@@ -44173,7 +43988,7 @@ module.exports = require("util");
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-app-mesh","description":"AWS SDK for JavaScript App Mesh Client for Node.js, Browser and React Native","version":"3.105.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"2.0.0","@aws-crypto/sha256-js":"2.0.0","@aws-sdk/client-sts":"3.105.0","@aws-sdk/config-resolver":"3.80.0","@aws-sdk/credential-provider-node":"3.105.0","@aws-sdk/fetch-http-handler":"3.78.0","@aws-sdk/hash-node":"3.78.0","@aws-sdk/invalid-dependency":"3.78.0","@aws-sdk/middleware-content-length":"3.78.0","@aws-sdk/middleware-host-header":"3.78.0","@aws-sdk/middleware-logger":"3.78.0","@aws-sdk/middleware-recursion-detection":"3.105.0","@aws-sdk/middleware-retry":"3.80.0","@aws-sdk/middleware-serde":"3.78.0","@aws-sdk/middleware-signing":"3.78.0","@aws-sdk/middleware-stack":"3.78.0","@aws-sdk/middleware-user-agent":"3.78.0","@aws-sdk/node-config-provider":"3.80.0","@aws-sdk/node-http-handler":"3.94.0","@aws-sdk/protocol-http":"3.78.0","@aws-sdk/smithy-client":"3.99.0","@aws-sdk/types":"3.78.0","@aws-sdk/url-parser":"3.78.0","@aws-sdk/util-base64-browser":"3.58.0","@aws-sdk/util-base64-node":"3.55.0","@aws-sdk/util-body-length-browser":"3.55.0","@aws-sdk/util-body-length-node":"3.55.0","@aws-sdk/util-defaults-mode-browser":"3.99.0","@aws-sdk/util-defaults-mode-node":"3.99.0","@aws-sdk/util-user-agent-browser":"3.78.0","@aws-sdk/util-user-agent-node":"3.80.0","@aws-sdk/util-utf8-browser":"3.55.0","@aws-sdk/util-utf8-node":"3.55.0","tslib":"^2.3.1","uuid":"^8.3.2"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.58.0","@tsconfig/recommended":"1.0.1","@types/node":"^12.7.5","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.7.0","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"engines":{"node":">=12.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-app-mesh","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-app-mesh"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-app-mesh","description":"AWS SDK for JavaScript App Mesh Client for Node.js, Browser and React Native","version":"3.128.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"2.0.0","@aws-crypto/sha256-js":"2.0.0","@aws-sdk/client-sts":"3.128.0","@aws-sdk/config-resolver":"3.128.0","@aws-sdk/credential-provider-node":"3.128.0","@aws-sdk/fetch-http-handler":"3.127.0","@aws-sdk/hash-node":"3.127.0","@aws-sdk/invalid-dependency":"3.127.0","@aws-sdk/middleware-content-length":"3.127.0","@aws-sdk/middleware-host-header":"3.127.0","@aws-sdk/middleware-logger":"3.127.0","@aws-sdk/middleware-recursion-detection":"3.127.0","@aws-sdk/middleware-retry":"3.127.0","@aws-sdk/middleware-serde":"3.127.0","@aws-sdk/middleware-signing":"3.128.0","@aws-sdk/middleware-stack":"3.127.0","@aws-sdk/middleware-user-agent":"3.127.0","@aws-sdk/node-config-provider":"3.127.0","@aws-sdk/node-http-handler":"3.127.0","@aws-sdk/protocol-http":"3.127.0","@aws-sdk/smithy-client":"3.127.0","@aws-sdk/types":"3.127.0","@aws-sdk/url-parser":"3.127.0","@aws-sdk/util-base64-browser":"3.109.0","@aws-sdk/util-base64-node":"3.55.0","@aws-sdk/util-body-length-browser":"3.55.0","@aws-sdk/util-body-length-node":"3.55.0","@aws-sdk/util-defaults-mode-browser":"3.127.0","@aws-sdk/util-defaults-mode-node":"3.128.0","@aws-sdk/util-user-agent-browser":"3.127.0","@aws-sdk/util-user-agent-node":"3.127.0","@aws-sdk/util-utf8-browser":"3.109.0","@aws-sdk/util-utf8-node":"3.109.0","tslib":"^2.3.1","uuid":"^8.3.2"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.58.0","@tsconfig/recommended":"1.0.1","@types/node":"^12.7.5","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.7.0","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"engines":{"node":">=12.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-app-mesh","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-app-mesh"}}');
 
 /***/ }),
 
@@ -44181,7 +43996,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-app-mesh","description":"A
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.105.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"2.0.0","@aws-crypto/sha256-js":"2.0.0","@aws-sdk/config-resolver":"3.80.0","@aws-sdk/fetch-http-handler":"3.78.0","@aws-sdk/hash-node":"3.78.0","@aws-sdk/invalid-dependency":"3.78.0","@aws-sdk/middleware-content-length":"3.78.0","@aws-sdk/middleware-host-header":"3.78.0","@aws-sdk/middleware-logger":"3.78.0","@aws-sdk/middleware-recursion-detection":"3.105.0","@aws-sdk/middleware-retry":"3.80.0","@aws-sdk/middleware-serde":"3.78.0","@aws-sdk/middleware-stack":"3.78.0","@aws-sdk/middleware-user-agent":"3.78.0","@aws-sdk/node-config-provider":"3.80.0","@aws-sdk/node-http-handler":"3.94.0","@aws-sdk/protocol-http":"3.78.0","@aws-sdk/smithy-client":"3.99.0","@aws-sdk/types":"3.78.0","@aws-sdk/url-parser":"3.78.0","@aws-sdk/util-base64-browser":"3.58.0","@aws-sdk/util-base64-node":"3.55.0","@aws-sdk/util-body-length-browser":"3.55.0","@aws-sdk/util-body-length-node":"3.55.0","@aws-sdk/util-defaults-mode-browser":"3.99.0","@aws-sdk/util-defaults-mode-node":"3.99.0","@aws-sdk/util-user-agent-browser":"3.78.0","@aws-sdk/util-user-agent-node":"3.80.0","@aws-sdk/util-utf8-browser":"3.55.0","@aws-sdk/util-utf8-node":"3.55.0","tslib":"^2.3.1"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.58.0","@tsconfig/recommended":"1.0.1","@types/node":"^12.7.5","concurrently":"7.0.0","downlevel-dts":"0.7.0","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"engines":{"node":">=12.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.128.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"2.0.0","@aws-crypto/sha256-js":"2.0.0","@aws-sdk/config-resolver":"3.128.0","@aws-sdk/fetch-http-handler":"3.127.0","@aws-sdk/hash-node":"3.127.0","@aws-sdk/invalid-dependency":"3.127.0","@aws-sdk/middleware-content-length":"3.127.0","@aws-sdk/middleware-host-header":"3.127.0","@aws-sdk/middleware-logger":"3.127.0","@aws-sdk/middleware-recursion-detection":"3.127.0","@aws-sdk/middleware-retry":"3.127.0","@aws-sdk/middleware-serde":"3.127.0","@aws-sdk/middleware-stack":"3.127.0","@aws-sdk/middleware-user-agent":"3.127.0","@aws-sdk/node-config-provider":"3.127.0","@aws-sdk/node-http-handler":"3.127.0","@aws-sdk/protocol-http":"3.127.0","@aws-sdk/smithy-client":"3.127.0","@aws-sdk/types":"3.127.0","@aws-sdk/url-parser":"3.127.0","@aws-sdk/util-base64-browser":"3.109.0","@aws-sdk/util-base64-node":"3.55.0","@aws-sdk/util-body-length-browser":"3.55.0","@aws-sdk/util-body-length-node":"3.55.0","@aws-sdk/util-defaults-mode-browser":"3.127.0","@aws-sdk/util-defaults-mode-node":"3.128.0","@aws-sdk/util-user-agent-browser":"3.127.0","@aws-sdk/util-user-agent-node":"3.127.0","@aws-sdk/util-utf8-browser":"3.109.0","@aws-sdk/util-utf8-node":"3.109.0","tslib":"^2.3.1"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.58.0","@tsconfig/recommended":"1.0.1","@types/node":"^12.7.5","concurrently":"7.0.0","downlevel-dts":"0.7.0","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"engines":{"node":">=12.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
 
 /***/ }),
 
@@ -44189,7 +44004,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SD
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.105.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"2.0.0","@aws-crypto/sha256-js":"2.0.0","@aws-sdk/config-resolver":"3.80.0","@aws-sdk/credential-provider-node":"3.105.0","@aws-sdk/fetch-http-handler":"3.78.0","@aws-sdk/hash-node":"3.78.0","@aws-sdk/invalid-dependency":"3.78.0","@aws-sdk/middleware-content-length":"3.78.0","@aws-sdk/middleware-host-header":"3.78.0","@aws-sdk/middleware-logger":"3.78.0","@aws-sdk/middleware-recursion-detection":"3.105.0","@aws-sdk/middleware-retry":"3.80.0","@aws-sdk/middleware-sdk-sts":"3.78.0","@aws-sdk/middleware-serde":"3.78.0","@aws-sdk/middleware-signing":"3.78.0","@aws-sdk/middleware-stack":"3.78.0","@aws-sdk/middleware-user-agent":"3.78.0","@aws-sdk/node-config-provider":"3.80.0","@aws-sdk/node-http-handler":"3.94.0","@aws-sdk/protocol-http":"3.78.0","@aws-sdk/smithy-client":"3.99.0","@aws-sdk/types":"3.78.0","@aws-sdk/url-parser":"3.78.0","@aws-sdk/util-base64-browser":"3.58.0","@aws-sdk/util-base64-node":"3.55.0","@aws-sdk/util-body-length-browser":"3.55.0","@aws-sdk/util-body-length-node":"3.55.0","@aws-sdk/util-defaults-mode-browser":"3.99.0","@aws-sdk/util-defaults-mode-node":"3.99.0","@aws-sdk/util-user-agent-browser":"3.78.0","@aws-sdk/util-user-agent-node":"3.80.0","@aws-sdk/util-utf8-browser":"3.55.0","@aws-sdk/util-utf8-node":"3.55.0","entities":"2.2.0","fast-xml-parser":"3.19.0","tslib":"^2.3.1"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.58.0","@tsconfig/recommended":"1.0.1","@types/node":"^12.7.5","concurrently":"7.0.0","downlevel-dts":"0.7.0","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"engines":{"node":">=12.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.128.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"2.0.0","@aws-crypto/sha256-js":"2.0.0","@aws-sdk/config-resolver":"3.128.0","@aws-sdk/credential-provider-node":"3.128.0","@aws-sdk/fetch-http-handler":"3.127.0","@aws-sdk/hash-node":"3.127.0","@aws-sdk/invalid-dependency":"3.127.0","@aws-sdk/middleware-content-length":"3.127.0","@aws-sdk/middleware-host-header":"3.127.0","@aws-sdk/middleware-logger":"3.127.0","@aws-sdk/middleware-recursion-detection":"3.127.0","@aws-sdk/middleware-retry":"3.127.0","@aws-sdk/middleware-sdk-sts":"3.128.0","@aws-sdk/middleware-serde":"3.127.0","@aws-sdk/middleware-signing":"3.128.0","@aws-sdk/middleware-stack":"3.127.0","@aws-sdk/middleware-user-agent":"3.127.0","@aws-sdk/node-config-provider":"3.127.0","@aws-sdk/node-http-handler":"3.127.0","@aws-sdk/protocol-http":"3.127.0","@aws-sdk/smithy-client":"3.127.0","@aws-sdk/types":"3.127.0","@aws-sdk/url-parser":"3.127.0","@aws-sdk/util-base64-browser":"3.109.0","@aws-sdk/util-base64-node":"3.55.0","@aws-sdk/util-body-length-browser":"3.55.0","@aws-sdk/util-body-length-node":"3.55.0","@aws-sdk/util-defaults-mode-browser":"3.127.0","@aws-sdk/util-defaults-mode-node":"3.128.0","@aws-sdk/util-user-agent-browser":"3.127.0","@aws-sdk/util-user-agent-node":"3.127.0","@aws-sdk/util-utf8-browser":"3.109.0","@aws-sdk/util-utf8-node":"3.109.0","entities":"2.2.0","fast-xml-parser":"3.19.0","tslib":"^2.3.1"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.58.0","@tsconfig/recommended":"1.0.1","@types/node":"^12.7.5","concurrently":"7.0.0","downlevel-dts":"0.7.0","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"engines":{"node":">=12.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
 
 /***/ }),
 
