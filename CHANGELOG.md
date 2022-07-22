@@ -1,3 +1,10 @@
+## [1.0.49-alpha.1](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.48...v1.0.49-alpha.1) (2022-07-22)
+
+
+### Bug Fixes
+
+* **deps:** yarn upgrade 20220722 ([de5141b](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/de5141be0f79c087b8bd3a24364e5241b16da51b))
+
 ## [1.0.48](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.47...v1.0.48) (2022-07-22)
 
 
