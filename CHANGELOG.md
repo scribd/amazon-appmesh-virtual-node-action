@@ -1,3 +1,12 @@
+## [1.0.49](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.48...v1.0.49) (2022-07-25)
+
+
+### Bug Fixes
+
+* **deps:** update to client 0.131.0 ([6fb23c1](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/6fb23c1d468d3ebff0c7b2cbf0fa6b9c76872272))
+* **deps:** yarn upgrade 20220722 ([de5141b](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/de5141be0f79c087b8bd3a24364e5241b16da51b))
+* **deps:** yarn upgrade vercel 0.34.0 ([42fe492](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/42fe492ef333b2a5d0b5936cf8e557cb2c6b850c))
+
 ## [1.0.48](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.47...v1.0.48) (2022-07-22)
 
 
