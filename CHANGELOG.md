@@ -1,3 +1,10 @@
+## [1.0.52-alpha.1](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.51...v1.0.52-alpha.1) (2022-08-02)
+
+
+### Bug Fixes
+
+* **deps:** pnpm upgrade 20220802 ([a20b5ef](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/a20b5ef2167fbad3d296ee88a47c351f4aa82a05))
+
 ## [1.0.51](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.50...v1.0.51) (2022-07-30)
 
 
