@@ -1,3 +1,10 @@
+## [1.0.59-alpha.1](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.58...v1.0.59-alpha.1) (2023-03-30)
+
+
+### Bug Fixes
+
+* **deps:** update aws sdk ([4e362fa](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/4e362fad989a77050fa80deb1e3d229fa79a464c))
+
 ## [1.0.58](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.57...v1.0.58) (2023-03-30)
 
 
