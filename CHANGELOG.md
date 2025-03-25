@@ -1,3 +1,10 @@
+## [1.0.59](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.58...v1.0.59) (2025-03-25)
+
+
+### Bug Fixes
+
+* DEVPLAT-3294 Update github actions due to ubuntu-20.04 deprecation ([7f345c5](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/7f345c55c8b61cede053b25905028b5e6847107d))
+
 ## [1.0.58](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.57...v1.0.58) (2023-03-30)
 
 
