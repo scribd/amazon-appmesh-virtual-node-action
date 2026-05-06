@@ -1,3 +1,11 @@
+## [1.0.60](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.59...v1.0.60) (2026-05-06)
+
+
+### Bug Fixes
+
+* bump semantic_version to 24 for Node.js 24 compatibility [DEVPLAT-7373] ([3e0e42b](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/3e0e42bae71db8fe4f69b60f99d2209f8a822127))
+* update extra_plugins to v24-compatible versions ([b15ecf1](https://github.com/scribd/amazon-appmesh-virtual-node-action/commit/b15ecf19dee1ab13fbcac76a22432fbca3b4ed4f))
+
 ## [1.0.59](https://github.com/scribd/amazon-appmesh-virtual-node-action/compare/v1.0.58...v1.0.59) (2025-03-25)
 
 
